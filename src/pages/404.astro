@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Page Not Found"
+  description="The page you're looking for doesn't exist."
+  noindex={true}
+>
+  <Header />
+
+  <main class="pt-32 pb-20">
+    <section class="section-padding">
+      <div class="mx-auto max-w-2xl text-center">
+        <div class="reveal">
+          <!-- 404 number -->
+          <div class="text-9xl font-extrabold mb-8 gradient-text">
+            404
+          </div>
+
+          <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">
+            Page Not Found
+          </h1>
+
+          <p class="text-lg mb-8" style="color: var(--color-text-secondary);">
+            The page you're looking for doesn't exist or has been moved. Let's get you back on track.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <a href="/" class="btn-primary">
+              Back to Home
+            </a>
+            <a href="/blog" class="btn-secondary">
+              Read the Blog
+            </a>
+          </div>
+
+          <!-- Quick links -->
+          <div class="glass-card rounded-2xl p-8 text-left">
+            <h3 class="text-lg font-bold mb-4">Popular Pages</h3>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <a href="/#blueprint" class="group">
+                <div class="text-sm font-semibold mb-1 transition-colors duration-300 group-hover:text-accent-purple">
+                  The Blueprint
+                </div>
+                <p class="text-xs" style="color: var(--color-text-muted);">
+                  AI automation guide and pricing
+                </p>
+              </a>
+              <a href="/blog" class="group">
+                <div class="text-sm font-semibold mb-1 transition-colors duration-300 group-hover:text-accent-purple">
+                  Blog
+                </div>
+                <p class="text-xs" style="color: var(--color-text-muted);">
+                  Tutorials and automation insights
+                </p>
+              </a>
+              <a href="/#system" class="group">
+                <div class="text-sm font-semibold mb-1 transition-colors duration-300 group-hover:text-accent-purple">
+                  The System
+                </div>
+                <p class="text-xs" style="color: var(--color-text-muted);">
+                  Five-layer automation framework
+                </p>
+              </a>
+              <a href="/#about" class="group">
+                <div class="text-sm font-semibold mb-1 transition-colors duration-300 group-hover:text-accent-purple">
+                  About Erronatus
+                </div>
+                <p class="text-xs" style="color: var(--color-text-muted);">
+                  Our mission and philosophy
+                </p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

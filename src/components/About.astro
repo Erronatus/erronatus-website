@@ -1,0 +1,96 @@
+---
+---
+
+<section id="about" class="section-spacing section-padding relative overflow-hidden">
+  <!-- Background -->
+  <div class="absolute top-1/2 left-0 w-96 h-96 -translate-y-1/2 rounded-full opacity-10"
+    style="background: radial-gradient(circle, var(--color-accent-blue), transparent 60%); filter: blur(100px);">
+  </div>
+
+  <div class="mx-auto max-w-6xl relative">
+    <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <!-- Left: Visual -->
+      <div class="reveal-left">
+        <div class="relative">
+          <div class="aspect-square max-w-md mx-auto rounded-2xl overflow-hidden"
+            style="background: linear-gradient(160deg, #0f0f1a 0%, #1a1025 50%, #0a1628 100%); border: 1px solid rgba(255,255,255,0.06);">
+            <div class="p-12 h-full flex flex-col justify-center items-center text-center relative">
+              <!-- Grid pattern -->
+              <div class="absolute inset-0 grid-overlay opacity-50"></div>
+
+              <div class="relative z-10">
+                <div class="w-20 h-20 rounded-2xl mx-auto mb-8 flex items-center justify-center"
+                  style="background: var(--gradient-primary);">
+                  <span class="text-white font-extrabold text-4xl">E</span>
+                </div>
+
+                <h3 class="text-2xl font-extrabold mb-3">Erronatus</h3>
+
+                <p class="text-sm font-mono" style="color: var(--color-accent-cyan);">
+                  // AI Operations Daemon
+                </p>
+
+                <div class="mt-8 flex items-center justify-center gap-4">
+                  <div class="h-px w-8" style="background: var(--color-border-2);"></div>
+                  <span class="text-xs tracking-widest uppercase" style="color: var(--color-text-muted);">Est. 2026</span>
+                  <div class="h-px w-8" style="background: var(--color-border-2);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Glow -->
+          <div class="absolute -inset-4 rounded-2xl opacity-15 -z-10"
+            style="background: var(--gradient-secondary); filter: blur(60px);">
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Copy -->
+      <div class="reveal-right">
+        <span class="text-xs font-semibold tracking-[0.3em] uppercase" style="color: var(--color-accent-cyan);">
+          The Mission
+        </span>
+
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mt-4 mb-8">
+          AI Automation
+          <br />
+          <span class="gradient-text">For Everyone</span>
+        </h2>
+
+        <div class="space-y-6" style="color: var(--color-text-secondary);">
+          <p class="text-lg leading-relaxed">
+            Erronatus was born from a simple observation: the tools to build autonomous AI systems
+            exist today, but the knowledge to assemble them is scattered across a thousand blog posts,
+            GitHub repos, and Discord threads.
+          </p>
+
+          <p class="text-base leading-relaxed">
+            We spent months building, breaking, and rebuilding our own AI automation stack.
+            Connecting APIs. Configuring multi-engine routing. Designing memory systems. Automating
+            everything from market analysis to email triage.
+          </p>
+
+          <p class="text-base leading-relaxed">
+            The Erronatus Blueprint is the distilled result — a complete, tested system that anyone
+            can deploy. Not theory. Not hype. A working automation framework that runs on your
+            infrastructure, under your control.
+          </p>
+        </div>
+
+        <div class="mt-10 grid grid-cols-3 gap-6">
+          {[
+            { value: '14+', label: 'APIs Integrated' },
+            { value: '5', label: 'AI Engines' },
+            { value: '∞', label: 'Automation Potential' },
+          ].map(stat => (
+            <div>
+              <div class="text-3xl font-extrabold gradient-text">{stat.value}</div>
+              <div class="text-xs mt-1" style="color: var(--color-text-muted);">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,87 @@
+---
+const testimonials = [
+  {
+    name: 'Marcus Chen',
+    role: 'Indie Developer',
+    text: 'I had an AI chatbot before. After the Blueprint, I have an AI employee. It monitors my servers, checks my analytics, and sends me a morning briefing — all automated. The engine routing alone saved me $200/month in API costs.',
+    avatar: 'MC',
+  },
+  {
+    name: 'Sarah Blackwell',
+    role: 'E-commerce Founder',
+    text: 'Went from manually checking inventory and sending emails to a fully automated workflow in a weekend. The API toolchain chapter is worth the entire price. My AI now handles customer notifications, stock alerts, and daily revenue reports.',
+    avatar: 'SB',
+  },
+  {
+    name: 'James Okafor',
+    role: 'Algorithmic Trader',
+    text: 'The trading automation chapter turned my manual RSI checks into an always-on system. Alpaca integration was seamless. I\'m running paper trades 24/7 now with AI-powered position sizing. This is the real deal.',
+    avatar: 'JO',
+  },
+  {
+    name: 'Nina Volkov',
+    role: 'Marketing Agency CEO',
+    text: 'We implemented the Blueprint across our entire agency. Each client now has an AI monitoring their campaigns, pulling analytics, and drafting reports. What took our team 20 hours a week now runs autonomously.',
+    avatar: 'NV',
+  },
+  {
+    name: 'David Park',
+    role: 'SaaS Developer',
+    text: 'The memory system architecture was the game-changer for me. My AI remembers every deployment, every bug, every conversation. It\'s like having a junior developer with perfect memory who never sleeps.',
+    avatar: 'DP',
+  },
+];
+---
+
+<section class="section-spacing relative overflow-hidden">
+  <div class="mx-auto max-w-7xl">
+    <!-- Section Header -->
+    <div class="section-padding mb-16 reveal">
+      <span class="text-xs font-semibold tracking-[0.3em] uppercase" style="color: var(--color-accent-cyan);">
+        From The Community
+      </span>
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mt-4 mb-4">
+        Builders Who
+        <span class="gradient-text">Automated First</span>
+      </h2>
+      <p class="max-w-lg text-lg" style="color: var(--color-text-secondary);">
+        Real results from people who stopped doing everything manually.
+      </p>
+    </div>
+
+    <!-- Horizontal Scroll -->
+    <div class="scroll-container section-padding reveal">
+      {testimonials.map((t, i) => (
+        <div class="scroll-item w-[340px] md:w-[400px]" style={`transition-delay: ${i * 0.1}s;`}>
+          <div class="glass-card glass-card-hover rounded-2xl p-8 h-full flex flex-col">
+            <!-- Stars -->
+            <div class="flex gap-1 mb-6">
+              {[1,2,3,4,5].map(() => (
+                <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+
+            <!-- Quote -->
+            <p class="text-sm leading-relaxed flex-1 mb-8" style="color: var(--color-text-secondary);">
+              "{t.text}"
+            </p>
+
+            <!-- Author -->
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold text-white"
+                style="background: var(--gradient-primary);">
+                {t.avatar}
+              </div>
+              <div>
+                <p class="text-sm font-semibold">{t.name}</p>
+                <p class="text-xs" style="color: var(--color-text-muted);">{t.role}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

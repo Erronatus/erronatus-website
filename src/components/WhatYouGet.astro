@@ -1,0 +1,195 @@
+---
+import CheckoutButton from './CheckoutButton.astro';
+
+const personalFeatures = [
+  'Complete OpenClaw setup guide',
+  'AI engine configuration',
+  'Basic API integration (5 services)',
+  'Memory system architecture',
+  'Cron job automation',
+  'Telegram/Discord bot setup',
+  'Markdown blog system',
+  'Deployment to Vercel',
+];
+
+const businessFeatures = [
+  'Everything in Personal Edition',
+  'Multi-engine routing strategy',
+  'Full 14-API toolchain setup',
+  'Trading bot framework (Alpaca)',
+  'Advanced memory & context systems',
+  'Custom skill development',
+  'Email automation (Resend)',
+  'Stripe payment integration',
+  'Priority updates for 12 months',
+  'Private community access',
+];
+
+// Stripe price IDs for test mode
+const PERSONAL_PRICE_ID = 'price_1PersonalTest';
+const BUSINESS_PRICE_ID = 'price_1BusinessTest';
+---
+
+<section id="blueprint" class="section-spacing section-padding relative overflow-hidden">
+  <!-- Background -->
+  <div class="absolute inset-0 grid-overlay"></div>
+  <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full opacity-10"
+    style="background: radial-gradient(circle, var(--color-accent-blue), transparent 60%); filter: blur(100px);">
+  </div>
+
+  <div class="mx-auto max-w-6xl relative">
+    <!-- Section Header -->
+    <div class="text-center mb-20 reveal">
+      <span class="text-xs font-semibold tracking-[0.3em] uppercase" style="color: var(--color-accent-cyan);">
+        The Blueprint
+      </span>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mt-4 mb-6">
+        Everything You Need to
+        <br />
+        <span class="gradient-text">Build Your AI System</span>
+      </h2>
+      <p class="max-w-2xl mx-auto text-lg" style="color: var(--color-text-secondary);">
+        A comprehensive guide that takes you from zero to a fully autonomous AI automation stack.
+        No theory. All implementation.
+      </p>
+    </div>
+
+    <!-- Product Mockup + Cards -->
+    <div class="grid lg:grid-cols-5 gap-10 items-start">
+      <!-- Floating Mockup -->
+      <div class="lg:col-span-2 flex justify-center reveal-left">
+        <div class="relative">
+          <!-- PDF Mockup -->
+          <div class="w-64 md:w-72 animate-float">
+            <div class="aspect-[3/4] rounded-xl overflow-hidden shadow-2xl"
+              style="background: linear-gradient(160deg, #111 0%, #1a1a2e 50%, #16213e 100%); border: 1px solid rgba(255,255,255,0.08);">
+              <div class="p-8 h-full flex flex-col justify-between">
+                <!-- Top -->
+                <div>
+                  <div class="w-10 h-10 rounded-lg mb-6 flex items-center justify-center"
+                    style="background: var(--gradient-primary);">
+                    <span class="text-white font-extrabold text-lg">E</span>
+                  </div>
+                  <div class="h-1.5 w-20 rounded mb-3" style="background: var(--gradient-primary); opacity: 0.6;"></div>
+                  <div class="h-1 w-32 rounded mb-2" style="background: rgba(255,255,255,0.1);"></div>
+                  <div class="h-1 w-24 rounded" style="background: rgba(255,255,255,0.06);"></div>
+                </div>
+
+                <!-- Middle -->
+                <div class="space-y-3">
+                  <div class="text-xs font-semibold tracking-widest uppercase" style="color: var(--color-accent-cyan); opacity: 0.7;">
+                    The Blueprint
+                  </div>
+                  <h3 class="text-xl font-extrabold leading-tight" style="color: #fff;">
+                    The Erronatus<br/>Blueprint
+                  </h3>
+                  <p class="text-[10px] leading-relaxed" style="color: rgba(255,255,255,0.4);">
+                    Personal & Business Guide<br/>to AI Automation with OpenClaw
+                  </p>
+                </div>
+
+                <!-- Bottom -->
+                <div class="flex items-center gap-2">
+                  <div class="h-px flex-1" style="background: rgba(255,255,255,0.1);"></div>
+                  <span class="text-[9px] tracking-widest uppercase" style="color: rgba(255,255,255,0.3);">2026 Edition</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Glow -->
+          <div class="absolute -inset-4 rounded-2xl opacity-20 -z-10"
+            style="background: var(--gradient-primary); filter: blur(40px);">
+          </div>
+        </div>
+      </div>
+
+      <!-- Pricing Cards -->
+      <div class="lg:col-span-3 grid sm:grid-cols-2 gap-6">
+        <!-- Personal -->
+        <div class="glass-card glass-card-hover rounded-2xl p-8 flex flex-col reveal" style="transition-delay: 0.1s;">
+          <div class="mb-6">
+            <span class="text-xs font-semibold tracking-widest uppercase" style="color: var(--color-text-muted);">Personal Edition</span>
+            <div class="flex items-baseline gap-1 mt-2">
+              <span class="text-5xl font-extrabold">$47</span>
+              <span class="text-sm" style="color: var(--color-text-muted);">one-time</span>
+            </div>
+          </div>
+
+          <p class="text-sm mb-8 leading-relaxed" style="color: var(--color-text-secondary);">
+            Everything you need to build your personal AI automation system from scratch.
+          </p>
+
+          <ul class="space-y-3 mb-10 flex-1">
+            {personalFeatures.map(f => (
+              <li class="flex items-start gap-3">
+                <svg class="w-4 h-4 mt-0.5 flex-shrink-0" style="color: var(--color-accent-blue);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-sm" style="color: var(--color-text-secondary);">{f}</span>
+              </li>
+            ))}
+          </ul>
+
+          <CheckoutButton
+            priceId={PERSONAL_PRICE_ID}
+            edition="personal"
+            label="Get Personal Edition"
+            variant="secondary"
+          />
+        </div>
+
+        <!-- Business -->
+        <div class="relative rounded-2xl p-8 flex flex-col reveal gradient-border" style="transition-delay: 0.2s; background: var(--color-surface);">
+          <!-- Popular badge -->
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase text-white"
+            style="background: var(--gradient-primary);">
+            Most Popular
+          </div>
+
+          <div class="mb-6">
+            <span class="text-xs font-semibold tracking-widest uppercase" style="color: var(--color-accent-purple);">Business Edition</span>
+            <div class="flex items-baseline gap-1 mt-2">
+              <span class="text-5xl font-extrabold">$97</span>
+              <span class="text-sm" style="color: var(--color-text-muted);">one-time</span>
+            </div>
+          </div>
+
+          <p class="text-sm mb-8 leading-relaxed" style="color: var(--color-text-secondary);">
+            The complete system — trading bots, email automation, full API stack, and priority support.
+          </p>
+
+          <ul class="space-y-3 mb-10 flex-1">
+            {businessFeatures.map(f => (
+              <li class="flex items-start gap-3">
+                <svg class="w-4 h-4 mt-0.5 flex-shrink-0" style="color: var(--color-accent-purple);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-sm" style="color: var(--color-text-secondary);">{f}</span>
+              </li>
+            ))}
+          </ul>
+
+          <CheckoutButton
+            priceId={BUSINESS_PRICE_ID}
+            edition="business"
+            label="Get Business Edition"
+            variant="primary"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Guarantee -->
+    <div class="mt-16 text-center reveal">
+      <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-card">
+        <svg class="w-5 h-5" style="color: var(--color-accent-cyan);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+        <span class="text-sm font-medium" style="color: var(--color-text-secondary);">
+          30-day money-back guarantee. No questions asked.
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
