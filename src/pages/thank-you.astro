@@ -2,6 +2,64 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+
+export const prerender = false;
+
+// Try to get session info from Stripe if session_id is in the URL
+let edition = 'personal';
+let customerEmail = '';
+let downloadUrl = '';
+let error = '';
+
+const sessionId = Astro.url.searchParams.get('session_id');
+
+if (sessionId) {
+  try {
+    const Stripe = (await import('stripe')).default;
+    const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY || '', {
+      apiVersion: '2023-10-16',
+    });
+
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    edition = session.metadata?.edition || 'personal';
+    customerEmail = session.customer_email || session.customer_details?.email || '';
+
+    // Generate signed download URL
+    const SUPABASE_URL = import.meta.env.SUPABASE_URL;
+    const SUPABASE_SERVICE_KEY = import.meta.env.SUPABASE_SERVICE_KEY;
+    const files: Record<string, string> = {
+      personal: 'erronatus-blueprint-personal.pdf',
+      business: 'erronatus-blueprint-business.pdf',
+      enterprise: 'erronatus-blueprint-enterprise.pdf',
+    };
+    const file = files[edition] || files.personal;
+
+    const res = await fetch(`${SUPABASE_URL}/storage/v1/object/sign/blueprints/${file}`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${SUPABASE_SERVICE_KEY}`,
+        apikey: SUPABASE_SERVICE_KEY,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ expiresIn: 7 * 24 * 60 * 60 }),
+    });
+
+    const data = await res.json();
+    if (data.signedURL) {
+      downloadUrl = `${SUPABASE_URL}/storage/v1${data.signedURL}`;
+    }
+  } catch (e: any) {
+    error = e.message;
+    console.error('Thank you page error:', e);
+  }
+}
+
+const editionLabels: Record<string, string> = {
+  personal: 'Personal Edition',
+  business: 'Business Edition',
+  enterprise: 'Enterprise Edition',
+};
+const editionLabel = editionLabels[edition] || 'Personal Edition';
 ---
 
 <BaseLayout
@@ -28,44 +86,69 @@ import Footer from '../components/Footer.astro';
           </h1>
 
           <p class="text-lg mb-8" style="color: var(--color-text-secondary);">
-            Thank you for purchasing The Erronatus Blueprint. Your guide is being prepared and will be delivered to your email within minutes.
+            Thank you for purchasing <strong style="color: var(--color-text);">The Erronatus Blueprint — {editionLabel}</strong>.
+            {downloadUrl
+              ? " Your guide is ready to download."
+              : " A download link has been sent to your email."
+            }
           </p>
 
           <!-- Download Card -->
           <div class="glass-card rounded-2xl p-8 mb-8 text-left">
             <div class="flex items-start gap-4 mb-6">
-              <div class="w-12 h-12 rounded-lg flex items-center justify-center"
+              <div class="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
                 style="background: var(--gradient-primary);">
                 <span class="text-white font-extrabold text-xl">E</span>
               </div>
               <div>
                 <h3 class="text-lg font-bold">The Erronatus Blueprint</h3>
-                <p class="text-sm" style="color: var(--color-text-muted);">Personal & Business Guide to AI Automation</p>
+                <p class="text-sm" style="color: var(--color-text-muted);">{editionLabel} — AI Automation with OpenClaw</p>
               </div>
             </div>
 
             <div class="space-y-3 mb-6">
+              {downloadUrl && (
+                <div class="flex items-center gap-3">
+                  <svg class="w-5 h-5 flex-shrink-0" style="color: #22c55e;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class="text-sm" style="color: var(--color-text-secondary);">
+                    Download link ready — expires in 7 days
+                  </span>
+                </div>
+              )}
               <div class="flex items-center gap-3">
-                <svg class="w-5 h-5" style="color: var(--color-accent-blue);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                <svg class="w-5 h-5 flex-shrink-0" style="color: var(--color-accent-blue);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
                 <span class="text-sm" style="color: var(--color-text-secondary);">
-                  Check your email for the download link (including spam folder)
+                  A copy has also been sent to your email (check spam if needed)
                 </span>
               </div>
               <div class="flex items-center gap-3">
-                <svg class="w-5 h-5" style="color: var(--color-accent-blue);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                <svg class="w-5 h-5 flex-shrink-0" style="color: var(--color-accent-blue);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 </svg>
                 <span class="text-sm" style="color: var(--color-text-secondary);">
-                  Access granted for lifetime updates
+                  Free lifetime updates included with your purchase
                 </span>
               </div>
             </div>
 
-            <button class="btn-primary w-full">
-              Download PDF Now
-            </button>
+            {downloadUrl ? (
+              <a href={downloadUrl} class="btn-primary w-full gap-2" download>
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <span>Download PDF Now</span>
+              </a>
+            ) : (
+              <div class="text-center py-4 rounded-xl" style="background: rgba(139, 92, 246, 0.08); border: 1px solid rgba(139, 92, 246, 0.15);">
+                <p class="text-sm font-medium" style="color: var(--color-accent-purple);">
+                  📬 Check your email for the download link
+                </p>
+              </div>
+            )}
           </div>
 
           <!-- Next Steps -->
@@ -79,18 +162,25 @@ import Footer from '../components/Footer.astro';
                 </p>
               </div>
               <div>
-                <div class="text-sm font-semibold mb-1" style="color: var(--color-accent-cyan);">2. Join the Community</div>
+                <div class="text-sm font-semibold mb-1" style="color: var(--color-accent-cyan);">2. Connect Your First API</div>
                 <p class="text-sm" style="color: var(--color-text-secondary);">
-                  Business Edition buyers get access to the private Telegram group for support and networking.
+                  Follow Chapter 5 to integrate your first external service and start pulling real data.
                 </p>
               </div>
               <div>
                 <div class="text-sm font-semibold mb-1" style="color: var(--color-accent-cyan);">3. Build Your First Automation</div>
                 <p class="text-sm" style="color: var(--color-text-secondary);">
-                  Follow Chapter 3 to set up your first cron job and API integration.
+                  Chapter 7 walks you through scheduling your first cron job — your AI starts working for you.
                 </p>
               </div>
             </div>
+          </div>
+
+          <!-- Support -->
+          <div class="mt-6 text-center">
+            <p class="text-sm" style="color: var(--color-text-muted);">
+              Need help? Email us at <a href="mailto:hello@erronatus.com" style="color: var(--color-accent-cyan);">hello@erronatus.com</a>
+            </p>
           </div>
 
           <div class="mt-8">
