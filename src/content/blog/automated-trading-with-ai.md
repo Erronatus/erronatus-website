@@ -5,6 +5,7 @@ date: "2026-03-04"
 category: "Trading Bots"
 readTime: "14 min read"
 author: "Erronatus"
+image: "/images/blog-trading.png"
 featured: false
 tags: ["trading", "alpaca", "automation", "finance"]
 seoTitle: "Automated Trading with AI — Build a Paper Trading Bot in 2026"

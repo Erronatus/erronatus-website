@@ -5,6 +5,7 @@ date: "2026-03-08"
 category: "AI Automation"
 readTime: "12 min read"
 author: "Erronatus"
+image: "/images/blog-automation.png"
 featured: true
 tags: ["openclaw", "automation", "ai", "setup"]
 seoTitle: "OpenClaw Automation Guide 2026 — Build Your AI Workforce"

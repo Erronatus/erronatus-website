@@ -5,6 +5,7 @@ date: "2026-03-06"
 category: "Tutorials"
 readTime: "10 min read"
 author: "Erronatus"
+image: "/images/blog-ai-bot.png"
 featured: true
 tags: ["ai-bot", "tutorial", "automation", "telegram"]
 seoTitle: "AI Bot Setup Tutorial 2026 — Build an Autonomous Agent"

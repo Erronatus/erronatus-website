@@ -9,6 +9,7 @@ const blog = defineCollection({
     category: z.string(),
     readTime: z.string(),
     author: z.string().default('Erronatus'),
+    image: z.string().optional(),
     featured: z.boolean().default(false),
     tags: z.array(z.string()).default([]),
     seoTitle: z.string().optional(),
