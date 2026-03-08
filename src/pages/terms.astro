@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Terms of Service" description="Erronatus Terms of Service — terms governing use of our website and digital products." noindex={true}>
+  <Header />
+  <main class="pt-32 pb-20">
+    <article class="section-padding">
+      <div class="mx-auto max-w-3xl prose-custom">
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">Terms of Service</h1>
+        <p class="text-sm mb-12" style="color: var(--color-text-muted);">Last updated: March 1, 2026</p>
+
+        <p>These Terms of Service ("Terms") govern your use of erronatus.com ("Website") and the purchase of digital products ("Products") offered by Erronatus ("we," "us," or "our"). By accessing the Website or purchasing Products, you agree to these Terms.</p>
+
+        <h2>1. Products and Services</h2>
+        <p>Erronatus sells digital educational products, including PDF guides and related digital assets ("The Erronatus Blueprint"). Products are delivered electronically via email after purchase.</p>
+
+        <h3>Product Editions</h3>
+        <ul>
+          <li><strong>Personal Edition ($47):</strong> Licensed for individual, personal use only.</li>
+          <li><strong>Business Edition ($97):</strong> Licensed for individual or single-business use.</li>
+          <li><strong>Enterprise Edition ($299):</strong> Licensed for individual or single-organization use, including pre-built automation workspace and priority support.</li>
+        </ul>
+
+        <h2>2. License</h2>
+        <p>Upon purchase, you receive a non-exclusive, non-transferable license to use the Product for your personal or business purposes as described above. You may <strong>not</strong>:</p>
+        <ul>
+          <li>Redistribute, resell, or share the Product with others</li>
+          <li>Upload the Product to public file-sharing services</li>
+          <li>Use the Product to create a competing product</li>
+          <li>Claim authorship of the Product's content</li>
+        </ul>
+        <p>You <strong>may</strong> use the knowledge, techniques, configurations, and code examples from the Product in your own projects without restriction.</p>
+
+        <h2>3. Payment</h2>
+        <p>All payments are processed securely by Stripe. Prices are in US dollars. You agree to provide accurate billing information. All sales are one-time payments — there are no recurring charges unless you explicitly subscribe to a separate service.</p>
+
+        <h2>4. Refund Policy</h2>
+        <p>We offer a <strong>30-day money-back guarantee</strong> on all Products. If you are not satisfied with your purchase for any reason, contact us within 30 days of purchase for a full refund.</p>
+        <ul>
+          <li>Refund requests should be sent to hello@erronatus.com</li>
+          <li>Include your order confirmation or email address used for purchase</li>
+          <li>Refunds are processed within 5-10 business days</li>
+          <li>No reason required — we trust your judgment</li>
+        </ul>
+
+        <h2>5. Product Delivery</h2>
+        <p>Products are delivered electronically to the email address provided at checkout. Delivery is typically instant but may take up to 24 hours. If you haven't received your Product within 24 hours, check your spam folder and contact us at hello@erronatus.com.</p>
+
+        <h2>6. Updates</h2>
+        <p>Product updates are provided at our discretion. All editions include free updates to the purchased edition. We are not obligated to provide updates, but we intend to maintain and improve the Product over time.</p>
+
+        <h2>7. Disclaimers</h2>
+        <p>The Product is provided "as is" without warranties of any kind. Specifically:</p>
+        <ul>
+          <li>The Product is educational content, not professional advice</li>
+          <li>Trading-related content is for educational purposes and paper trading only — it is not financial advice</li>
+          <li>We do not guarantee specific results, income, or outcomes</li>
+          <li>Third-party APIs, services, and tools mentioned may change their terms, pricing, or availability</li>
+          <li>OpenClaw is open-source software maintained by its own community — we are not affiliated with or responsible for OpenClaw's development</li>
+        </ul>
+
+        <h2>8. Limitation of Liability</h2>
+        <p>To the maximum extent permitted by law, Erronatus shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the Website or Products. Our total liability shall not exceed the amount you paid for the Product.</p>
+
+        <h2>9. Intellectual Property</h2>
+        <p>All content on the Website and in the Products — including text, design, code, graphics, and branding — is owned by Erronatus and protected by copyright law. The Erronatus name, logo, and brand marks are our trademarks.</p>
+
+        <h2>10. Email Communications</h2>
+        <p>By purchasing a Product or subscribing to our newsletter, you consent to receive:</p>
+        <ul>
+          <li>Transactional emails (purchase confirmation, download links)</li>
+          <li>Product update notifications</li>
+          <li>Newsletter content (if subscribed — you can unsubscribe at any time)</li>
+        </ul>
+        <p>We will never sell your email address to third parties.</p>
+
+        <h2>11. Governing Law</h2>
+        <p>These Terms are governed by the laws of the United States. Any disputes shall be resolved in the courts of the State of Texas.</p>
+
+        <h2>12. Changes to These Terms</h2>
+        <p>We may update these Terms from time to time. Changes will be posted on this page. Continued use of the Website or Products after changes constitutes acceptance of the updated Terms.</p>
+
+        <h2>13. Contact</h2>
+        <p>For questions about these Terms, contact us at:</p>
+        <p><strong>Email:</strong> hello@erronatus.com<br/><strong>Website:</strong> erronatus.com</p>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Privacy Policy" description="Erronatus Privacy Policy — how we collect, use, and protect your data." noindex={true}>
+  <Header />
+  <main class="pt-32 pb-20">
+    <article class="section-padding">
+      <div class="mx-auto max-w-3xl prose-custom">
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">Privacy Policy</h1>
+        <p class="text-sm mb-12" style="color: var(--color-text-muted);">Last updated: March 1, 2026</p>
+
+        <p>Erronatus ("we," "us," or "our") operates erronatus.com. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or purchase our products.</p>
+
+        <h2>Information We Collect</h2>
+        <h3>Information You Provide</h3>
+        <p>We collect information you voluntarily provide when you:</p>
+        <ul>
+          <li><strong>Make a purchase:</strong> Name, email address, billing address, and payment information. Payment processing is handled entirely by Stripe — we never see or store your full credit card number.</li>
+          <li><strong>Subscribe to our newsletter:</strong> Email address only.</li>
+          <li><strong>Contact us:</strong> Any information you include in your message.</li>
+        </ul>
+
+        <h3>Information Collected Automatically</h3>
+        <p>When you visit our website, we may collect:</p>
+        <ul>
+          <li><strong>Usage data:</strong> Pages viewed, time spent, referring URL, and browser type.</li>
+          <li><strong>Device data:</strong> Operating system, screen resolution, and device type.</li>
+          <li><strong>Analytics:</strong> We use privacy-respecting analytics (Vercel Web Analytics) that do not use cookies for tracking.</li>
+        </ul>
+
+        <h2>How We Use Your Information</h2>
+        <p>We use collected information to:</p>
+        <ul>
+          <li>Process and fulfill your purchases</li>
+          <li>Deliver digital products to your email</li>
+          <li>Send you product updates (if you opted in)</li>
+          <li>Send newsletter content (if you subscribed)</li>
+          <li>Respond to your inquiries and support requests</li>
+          <li>Improve our website and products</li>
+          <li>Comply with legal obligations</li>
+        </ul>
+
+        <h2>Cookies</h2>
+        <p>Our website uses minimal cookies:</p>
+        <ul>
+          <li><strong>Theme preference:</strong> A local storage item that remembers your dark/light mode choice. No tracking involved.</li>
+          <li><strong>Stripe:</strong> When you initiate checkout, Stripe may set cookies necessary for payment processing and fraud prevention.</li>
+        </ul>
+        <p>We do not use advertising cookies, retargeting pixels, or third-party tracking scripts.</p>
+
+        <h2>Third-Party Services</h2>
+        <p>We share information with the following services, solely for the purposes described:</p>
+        <ul>
+          <li><strong>Stripe:</strong> Payment processing. Subject to <a href="https://stripe.com/privacy" target="_blank">Stripe's Privacy Policy</a>.</li>
+          <li><strong>Resend:</strong> Email delivery. Subject to <a href="https://resend.com/legal/privacy-policy" target="_blank">Resend's Privacy Policy</a>.</li>
+          <li><strong>Vercel:</strong> Website hosting and analytics. Subject to <a href="https://vercel.com/legal/privacy-policy" target="_blank">Vercel's Privacy Policy</a>.</li>
+        </ul>
+
+        <h2>Data Retention</h2>
+        <p>We retain your information for as long as necessary to provide our services:</p>
+        <ul>
+          <li><strong>Purchase records:</strong> Retained for tax and legal compliance (typically 7 years).</li>
+          <li><strong>Email subscriptions:</strong> Retained until you unsubscribe.</li>
+          <li><strong>Support communications:</strong> Retained for 2 years after last contact.</li>
+        </ul>
+
+        <h2>Your Rights</h2>
+        <p>You have the right to:</p>
+        <ul>
+          <li><strong>Access:</strong> Request a copy of your personal data.</li>
+          <li><strong>Correction:</strong> Request correction of inaccurate data.</li>
+          <li><strong>Deletion:</strong> Request deletion of your data (subject to legal retention requirements).</li>
+          <li><strong>Unsubscribe:</strong> Opt out of marketing emails at any time via the unsubscribe link.</li>
+        </ul>
+        <p>To exercise these rights, email us at hello@erronatus.com.</p>
+
+        <h2>Data Security</h2>
+        <p>We implement industry-standard security measures including HTTPS encryption, secure payment processing through Stripe, and access controls on our systems. However, no method of transmission over the Internet is 100% secure.</p>
+
+        <h2>Children's Privacy</h2>
+        <p>Our products and services are not directed to individuals under 16. We do not knowingly collect personal information from children.</p>
+
+        <h2>Changes to This Policy</h2>
+        <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated revision date. Continued use of our website after changes constitutes acceptance of the updated policy.</p>
+
+        <h2>Contact Us</h2>
+        <p>If you have questions about this Privacy Policy, contact us at:</p>
+        <p><strong>Email:</strong> hello@erronatus.com<br/><strong>Website:</strong> erronatus.com</p>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>

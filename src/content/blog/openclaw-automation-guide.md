@@ -1,7 +1,7 @@
 ---
 title: "The Complete OpenClaw Automation Guide: From Zero to Autonomous AI in One Weekend"
 excerpt: "A step-by-step walkthrough of setting up OpenClaw, configuring multi-engine AI routing, and building your first autonomous automation workflow."
-date: "2026-03-08"
+date: "2026-03-07"
 category: "AI Automation"
 readTime: "12 min read"
 author: "Erronatus"

@@ -1,0 +1,104 @@
+---
+const rows = [
+  {
+    metric: 'Time to Working System',
+    blueprint: '1 weekend',
+    diy: '3-6 months',
+  },
+  {
+    metric: 'Total Cost',
+    blueprint: '$47-299 one-time',
+    diy: '$0 + hundreds of hours',
+  },
+  {
+    metric: 'APIs Pre-Integrated',
+    blueprint: '14 services, tested',
+    diy: 'Figure out each one separately',
+  },
+  {
+    metric: 'Gaps in Knowledge',
+    blueprint: 'Zero — complete system',
+    diy: 'Constant — tutorials skip the hard parts',
+  },
+  {
+    metric: 'Engine Cost Optimization',
+    blueprint: 'Pre-configured routing saves 60-80%',
+    diy: 'Most people overspend for months',
+  },
+  {
+    metric: 'Memory & Context',
+    blueprint: 'Architected from Day 1',
+    diy: 'Most never figure this out',
+  },
+  {
+    metric: 'Automation Templates',
+    blueprint: '50+ cron jobs ready to deploy',
+    diy: 'Build each from scratch',
+  },
+  {
+    metric: 'Success Rate',
+    blueprint: 'Follow the guide, get the result',
+    diy: 'Most quit before finishing setup',
+  },
+];
+---
+
+<section class="section-spacing section-padding relative overflow-hidden">
+  <div class="mx-auto max-w-4xl">
+    <div class="text-center mb-20 reveal">
+      <span class="text-xs font-semibold tracking-[0.3em] uppercase" style="color: var(--color-accent-cyan);">
+        The Difference
+      </span>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mt-4">
+        Blueprint vs.
+        <span class="gradient-text">Going It Alone</span>
+      </h2>
+    </div>
+
+    <div class="reveal-scale">
+      <div class="glass-card rounded-2xl overflow-hidden">
+        <!-- Header -->
+        <div class="grid grid-cols-3 gap-4 p-6 text-sm font-semibold"
+          style="border-bottom: 1px solid var(--color-border);">
+          <div style="color: var(--color-text-muted);"></div>
+          <div class="text-center">
+            <span class="gradient-text text-base font-bold">Erronatus Blueprint</span>
+          </div>
+          <div class="text-center" style="color: var(--color-text-muted);">
+            Learning On Your Own
+          </div>
+        </div>
+
+        <!-- Rows -->
+        {rows.map((row, i) => (
+          <div class="grid grid-cols-3 gap-4 p-5 md:p-6 items-center text-sm transition-colors duration-300 hover:bg-white/[0.01]"
+            style={i < rows.length - 1 ? `border-bottom: 1px solid var(--color-border);` : ''}>
+            <div class="font-medium text-xs md:text-sm" style="color: var(--color-text-secondary);">
+              {row.metric}
+            </div>
+            <div class="text-center">
+              <span class="inline-flex items-center gap-1.5 text-xs md:text-sm font-medium" style="color: var(--color-accent-cyan);">
+                <svg class="w-3.5 h-3.5 flex-shrink-0 hidden md:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                {row.blueprint}
+              </span>
+            </div>
+            <div class="text-center text-xs md:text-sm" style="color: var(--color-text-muted);">
+              {row.diy}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="text-center mt-10 reveal">
+      <a href="#blueprint" class="btn-primary gap-2">
+        <span>Skip the Learning Curve</span>
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

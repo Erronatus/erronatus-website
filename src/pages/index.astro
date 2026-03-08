@@ -3,25 +3,29 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import ProblemSolution from '../components/ProblemSolution.astro';
-import WhatYouGet from '../components/WhatYouGet.astro';
-import TheSystem from '../components/TheSystem.astro';
 import SocialProof from '../components/SocialProof.astro';
-import BlogPreview from '../components/BlogPreview.astro';
+import WhatYouGet from '../components/WhatYouGet.astro';
+import Comparison from '../components/Comparison.astro';
+import TheSystem from '../components/TheSystem.astro';
 import About from '../components/About.astro';
+import FAQ from '../components/FAQ.astro';
+import BlogPreview from '../components/BlogPreview.astro';
 import EmailCapture from '../components/EmailCapture.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<BaseLayout title="Erronatus" description="Build autonomous AI systems that execute, analyze, and scale. The Erronatus Blueprint teaches you AI automation with OpenClaw.">
+<BaseLayout title="Erronatus — AI Automation Blueprint" description="Build autonomous AI systems that execute, analyze, and scale. The Erronatus Blueprint teaches you AI automation with OpenClaw — from personal assistant to fully autonomous business.">
   <Header />
   <main>
     <Hero />
+    <SocialProof />
     <ProblemSolution />
     <WhatYouGet />
+    <Comparison />
     <TheSystem />
-    <SocialProof />
-    <BlogPreview />
     <About />
+    <FAQ />
+    <BlogPreview />
     <EmailCapture />
   </main>
   <Footer />

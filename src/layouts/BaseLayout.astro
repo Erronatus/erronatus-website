@@ -10,7 +10,7 @@ interface Props {
 const {
   title,
   description = 'Build autonomous AI systems that execute, analyze, and scale. The Erronatus Blueprint teaches you AI automation with OpenClaw.',
-  image = '/og-image.png',
+  image = '/images/og-image.png',
   type = 'website',
   noindex = false,
 } = Astro.props;
@@ -25,16 +25,22 @@ const fullTitle = title === 'Erronatus' ? title : `${title} — Erronatus`;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    
+
     <!-- Primary Meta -->
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    
+
+    <!-- Font Preloading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" as="style" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+
     <!-- Open Graph -->
     <meta property="og:type" content={type} />
     <meta property="og:title" content={fullTitle} />
@@ -42,13 +48,13 @@ const fullTitle = title === 'Erronatus' ? title : `${title} — Erronatus`;
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={new URL(image, Astro.site)} />
     <meta property="og:site_name" content="Erronatus" />
-    
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(image, Astro.site)} />
-    
+
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
@@ -58,12 +64,11 @@ const fullTitle = title === 'Erronatus' ? title : `${title} — Erronatus`;
       "description": description,
       "logo": "https://erronatus.com/favicon.svg",
     })} />
-
-    <!-- Preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body class="min-h-screen antialiased">
+    <!-- Grain texture overlay -->
+    <div class="grain-overlay" aria-hidden="true"></div>
+
     <slot />
 
     <!-- Theme Toggle Script -->
@@ -75,7 +80,7 @@ const fullTitle = title === 'Erronatus' ? title : `${title} — Erronatus`;
       })();
     </script>
 
-    <!-- Scroll Reveal -->
+    <!-- Scroll Reveal with stagger support -->
     <script is:inline>
       document.addEventListener('DOMContentLoaded', () => {
         const observer = new IntersectionObserver((entries) => {
@@ -84,9 +89,9 @@ const fullTitle = title === 'Erronatus' ? title : `${title} — Erronatus`;
               entry.target.classList.add('visible');
             }
           });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
 
-        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children').forEach(el => {
           observer.observe(el);
         });
       });

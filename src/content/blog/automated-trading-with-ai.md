@@ -1,7 +1,7 @@
 ---
 title: "Automated Trading with AI: Building a Paper Trading Bot That Monitors Markets 24/7"
 excerpt: "How to build an AI-powered trading monitor using OpenClaw, Alpaca, and Alpha Vantage. Paper trading, RSI alerts, and automated position analysis."
-date: "2026-03-04"
+date: "2026-03-01"
 category: "Trading Bots"
 readTime: "14 min read"
 author: "Erronatus"

@@ -1,7 +1,7 @@
 ---
 title: "How to Build an AI Bot That Actually Does Things (Not Just Chat)"
 excerpt: "Most AI bots are glorified search bars. Here's how to build one that monitors APIs, executes tasks, manages memory, and operates autonomously."
-date: "2026-03-06"
+date: "2026-03-04"
 category: "Tutorials"
 readTime: "10 min read"
 author: "Erronatus"
