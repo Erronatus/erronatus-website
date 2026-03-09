@@ -1,34 +1,35 @@
-# Dependencies
+# Build outputs
+dist/
+.next/
+.vscode/
+.DS_Store
 node_modules/
-.pnpm-debug.log*
 
-# Environment variables
+# PDF generation intermediates
+dist-pdfs/*.html
+dist-pdfs/*.typ
+dist-pdfs/*.png
+dist-pdfs/*.jpg
+dist-pdfs/*.jpeg
+dist-pdfs/margin-test.pdf
+
+# Keep only the final PDFs
+!dist-pdfs/erronatus-blueprint-*.pdf
+
+# Environment files
 .env
 .env.local
 .env.*.local
 
-# Build output
-dist/
-.out/
-
-# Astro
-astro.dist/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
 # Logs
+logs
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Temporary files
-.tmp/
-tmp/
-.vercel
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock

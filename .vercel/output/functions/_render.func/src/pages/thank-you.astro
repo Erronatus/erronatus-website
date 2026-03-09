@@ -1,0 +1,197 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+export const prerender = false;
+
+// Try to get session info from Stripe if session_id is in the URL
+let edition = 'personal';
+let customerEmail = '';
+let downloadUrl = '';
+let error = '';
+
+const sessionId = Astro.url.searchParams.get('session_id');
+
+if (sessionId) {
+  try {
+    const Stripe = (await import('stripe')).default;
+    const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY || '', {
+      apiVersion: '2023-10-16',
+    });
+
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    edition = session.metadata?.edition || 'personal';
+    customerEmail = session.customer_email || session.customer_details?.email || '';
+
+    // Generate signed download URL
+    const SUPABASE_URL = import.meta.env.SUPABASE_URL;
+    const SUPABASE_SERVICE_KEY = import.meta.env.SUPABASE_SERVICE_KEY;
+    const files: Record<string, string> = {
+      personal: 'erronatus-blueprint-personal.pdf',
+      business: 'erronatus-blueprint-business.pdf',
+      enterprise: 'erronatus-blueprint-enterprise.pdf',
+    };
+    const file = files[edition] || files.personal;
+
+    const res = await fetch(`${SUPABASE_URL}/storage/v1/object/sign/blueprints/${file}`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${SUPABASE_SERVICE_KEY}`,
+        apikey: SUPABASE_SERVICE_KEY,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ expiresIn: 7 * 24 * 60 * 60 }),
+    });
+
+    const data = await res.json();
+    if (data.signedURL) {
+      downloadUrl = `${SUPABASE_URL}/storage/v1${data.signedURL}`;
+    }
+  } catch (e: any) {
+    error = e.message;
+    console.error('Thank you page error:', e);
+  }
+}
+
+const editionLabels: Record<string, string> = {
+  personal: 'Personal Edition',
+  business: 'Business Edition',
+  enterprise: 'Enterprise Edition',
+};
+const editionLabel = editionLabels[edition] || 'Personal Edition';
+---
+
+<BaseLayout
+  title="Thank You"
+  description="Thank you for purchasing The Erronatus Blueprint. Your download is ready."
+  noindex={true}
+>
+  <Header />
+
+  <main class="pt-32 pb-20">
+    <section class="section-padding">
+      <div class="mx-auto max-w-2xl text-center">
+        <div class="reveal">
+          <!-- Success icon -->
+          <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8"
+            style="background: var(--gradient-primary);">
+            <svg class="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+
+          <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">
+            <span class="gradient-text">Purchase Confirmed</span>
+          </h1>
+
+          <p class="text-lg mb-8" style="color: var(--color-text-secondary);">
+            Thank you for purchasing <strong style="color: var(--color-text);">The Erronatus Blueprint — {editionLabel}</strong>.
+            {downloadUrl
+              ? " Your guide is ready to download."
+              : " A download link has been sent to your email."
+            }
+          </p>
+
+          <!-- Download Card -->
+          <div class="glass-card rounded-2xl p-8 mb-8 text-left">
+            <div class="flex items-start gap-4 mb-6">
+              <div class="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
+                style="background: var(--gradient-primary);">
+                <span class="text-white font-extrabold text-xl">E</span>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold">The Erronatus Blueprint</h3>
+                <p class="text-sm" style="color: var(--color-text-muted);">{editionLabel} — AI Automation with OpenClaw</p>
+              </div>
+            </div>
+
+            <div class="space-y-3 mb-6">
+              {downloadUrl && (
+                <div class="flex items-center gap-3">
+                  <svg class="w-5 h-5 flex-shrink-0" style="color: #22c55e;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class="text-sm" style="color: var(--color-text-secondary);">
+                    Download link ready — expires in 7 days
+                  </span>
+                </div>
+              )}
+              <div class="flex items-center gap-3">
+                <svg class="w-5 h-5 flex-shrink-0" style="color: var(--color-accent-blue);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span class="text-sm" style="color: var(--color-text-secondary);">
+                  A copy has also been sent to your email (check spam if needed)
+                </span>
+              </div>
+              <div class="flex items-center gap-3">
+                <svg class="w-5 h-5 flex-shrink-0" style="color: var(--color-accent-blue);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                <span class="text-sm" style="color: var(--color-text-secondary);">
+                  Free lifetime updates included with your purchase
+                </span>
+              </div>
+            </div>
+
+            {downloadUrl ? (
+              <a href={downloadUrl} class="btn-primary w-full gap-2" download>
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <span>Download PDF Now</span>
+              </a>
+            ) : (
+              <div class="text-center py-4 rounded-xl" style="background: rgba(139, 92, 246, 0.08); border: 1px solid rgba(139, 92, 246, 0.15);">
+                <p class="text-sm font-medium" style="color: var(--color-accent-purple);">
+                  📬 Check your email for the download link
+                </p>
+              </div>
+            )}
+          </div>
+
+          <!-- Next Steps -->
+          <div class="glass-card rounded-2xl p-8 text-left">
+            <h3 class="text-lg font-bold mb-4">Next Steps</h3>
+            <div class="space-y-4">
+              <div>
+                <div class="text-sm font-semibold mb-1" style="color: var(--color-accent-cyan);">1. Read the Setup Guide</div>
+                <p class="text-sm" style="color: var(--color-text-secondary);">
+                  Start with Chapter 1 to install OpenClaw and configure your AI gateway.
+                </p>
+              </div>
+              <div>
+                <div class="text-sm font-semibold mb-1" style="color: var(--color-accent-cyan);">2. Connect Your First API</div>
+                <p class="text-sm" style="color: var(--color-text-secondary);">
+                  Follow Chapter 5 to integrate your first external service and start pulling real data.
+                </p>
+              </div>
+              <div>
+                <div class="text-sm font-semibold mb-1" style="color: var(--color-accent-cyan);">3. Build Your First Automation</div>
+                <p class="text-sm" style="color: var(--color-text-secondary);">
+                  Chapter 7 walks you through scheduling your first cron job — your AI starts working for you.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Support -->
+          <div class="mt-6 text-center">
+            <p class="text-sm" style="color: var(--color-text-muted);">
+              Need help? Email us at <a href="mailto:hello@erronatus.com" style="color: var(--color-accent-cyan);">hello@erronatus.com</a>
+            </p>
+          </div>
+
+          <div class="mt-8">
+            <a href="/" class="btn-secondary">
+              Back to Home
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
