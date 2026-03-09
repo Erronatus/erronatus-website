@@ -6,7 +6,7 @@ import vercel from '@astrojs/vercel';
 
 export default defineConfig({
   site: 'https://erronatus.com',
-  output: 'hybrid',
+  output: 'static',
   adapter: vercel({
     webAnalytics: { enabled: true },
   }),
