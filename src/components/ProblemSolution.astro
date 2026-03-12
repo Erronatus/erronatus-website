@@ -3,9 +3,8 @@
 
 <section class="section-spacing section-padding relative overflow-hidden">
   <!-- Background accent -->
-  <div class="absolute top-0 right-0 w-96 h-96 rounded-full opacity-10"
-    style="background: radial-gradient(circle, var(--color-accent-purple), transparent 70%); filter: blur(80px);">
-  </div>
+  <div class="absolute top-0 right-0 w-96 h-96 rounded-full opacity-8 pointer-events-none"
+    style="background: radial-gradient(circle, var(--color-accent-blue), transparent 70%); filter: blur(100px);"></div>
 
   <div class="mx-auto max-w-6xl relative">
     <!-- Section Label -->
@@ -25,14 +24,15 @@
           <span style="color: var(--color-text-muted);">Everything Manually</span>
         </h2>
 
-        <div class="space-y-6">
+        <div class="space-y-5">
           {[
             { icon: '⏱', text: 'Hours wasted on repetitive tasks that AI can execute in seconds' },
             { icon: '🔌', text: 'Dozens of disconnected tools with no automation between them' },
             { icon: '📊', text: 'Market data you never check because there\'s no system watching for you' },
             { icon: '🧠', text: 'Knowledge trapped in your head instead of documented in persistent memory' },
-          ].map(item => (
-            <div class="flex gap-4 items-start">
+          ].map((item, i) => (
+            <div class="problem-item flex gap-4 items-start p-4 -mx-4 rounded-xl transition-all duration-300 hover:bg-white/[0.02]"
+              style={`transition-delay: ${i * 0.05}s;`}>
               <span class="text-xl mt-0.5 flex-shrink-0">{item.icon}</span>
               <p class="text-base leading-relaxed" style="color: var(--color-text-secondary);">
                 {item.text}
@@ -43,17 +43,17 @@
 
         <div class="mt-10 h-px w-full" style="background: linear-gradient(to right, var(--color-border), transparent);"></div>
 
-        <p class="mt-6 text-sm font-medium" style="color: var(--color-text-muted);">
+        <p class="mt-6 text-sm font-medium italic" style="color: var(--color-text-muted);">
           Every hour you spend on tasks AI should handle is an hour you're not building, scaling, or thinking.
         </p>
       </div>
 
       <!-- Solution -->
       <div class="reveal-right">
-        <div class="glass-card rounded-2xl p-8 md:p-10">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-6"
-            style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2);">
-            <span class="w-1.5 h-1.5 rounded-full bg-accent-blue"></span>
+        <div class="glass-card glass-card-hover rounded-2xl p-8 md:p-10">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-6"
+            style="background: rgba(212, 132, 58, 0.08); border: 1px solid rgba(212, 132, 58, 0.15);">
+            <span class="w-1.5 h-1.5 rounded-full" style="background: var(--color-accent-blue);"></span>
             <span class="text-xs font-semibold tracking-widest uppercase" style="color: var(--color-accent-blue);">
               The Solution
             </span>
@@ -78,9 +78,9 @@
               'Persistent memory systems so your AI learns and remembers',
               'Cron-powered automation that works while you sleep',
               'Production deployment on your own infrastructure',
-            ].map(item => (
-              <div class="flex items-start gap-3">
-                <svg class="w-5 h-5 mt-0.5 flex-shrink-0" style="color: var(--color-accent-blue);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            ].map((item, i) => (
+              <div class="flex items-start gap-3 group/item">
+                <svg class="w-5 h-5 mt-0.5 flex-shrink-0 transition-transform duration-300 group-hover/item:scale-110" style="color: var(--color-accent-blue);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <span class="text-sm" style="color: var(--color-text-secondary);">{item}</span>

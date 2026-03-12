@@ -79,7 +79,7 @@ const { Content, headings } = await post.render();
                   loading="eager" />
               ) : (
                 <div class="w-full h-full"
-                  style="background: linear-gradient(135deg, hsl(250, 60%, 15%), hsl(270, 60%, 25%));" />
+                  style="background: linear-gradient(135deg, hsl(25, 40%, 12%), hsl(35, 45%, 18%));" />
               )}
             </div>
 
@@ -95,7 +95,7 @@ const { Content, headings } = await post.render();
                       class="text-sm flex items-center gap-2 transition-colors duration-300 hover:text-white"
                       style="color: var(--color-text-muted);"
                     >
-                      <span class="w-1.5 h-1.5 rounded-full bg-accent-purple opacity-50"></span>
+                      <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent-blue)] opacity-50"></span>
                       {h.text}
                     </a>
                   ))}
@@ -173,7 +173,7 @@ const { Content, headings } = await post.render();
                       class="text-sm flex items-center gap-2 py-2 transition-colors duration-300 hover:text-white"
                       style="color: var(--color-text-muted);"
                     >
-                      <span class="w-1.5 h-1.5 rounded-full bg-accent-purple opacity-50"></span>
+                      <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent-blue)] opacity-50"></span>
                       {h.text}
                     </a>
                   ))}
@@ -188,9 +188,3 @@ const { Content, headings } = await post.render();
   <Footer />
 </BaseLayout>
 
-<style is:global>
-  /* Smooth scrolling for anchor links */
-  html {
-    scroll-behavior: smooth;
-  }
-</style>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#060608"/>
+      <stop offset="100%" stop-color="#0d0d11"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C46A2F"/>
+      <stop offset="100%" stop-color="#D4A853"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="70%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="rgba(212, 132, 58, 0.15)"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <!-- Grid -->
+  <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+    <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(255,255,255,0.02)" stroke-width="1"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <!-- Logo -->
+  <rect x="80" y="80" width="56" height="56" rx="12" fill="url(#accent)"/>
+  <text x="108" y="118" font-family="Inter,system-ui,sans-serif" font-weight="800" font-size="28" fill="#fff" text-anchor="middle">E</text>
+  <!-- Title -->
+  <text x="80" y="260" font-family="Inter,system-ui,sans-serif" font-weight="800" font-size="64" fill="#f0f0f5">Your AI Workforce</text>
+  <text x="80" y="340" font-family="Inter,system-ui,sans-serif" font-weight="800" font-size="64" fill="url(#accent)">Starts Here</text>
+  <!-- Subtitle -->
+  <text x="80" y="400" font-family="Inter,system-ui,sans-serif" font-weight="400" font-size="22" fill="#94949e">Build autonomous AI systems that execute, analyze, and scale.</text>
+  <text x="80" y="435" font-family="Inter,system-ui,sans-serif" font-weight="400" font-size="22" fill="#94949e">The complete AI automation blueprint.</text>
+  <!-- Stats bar -->
+  <rect x="80" y="490" width="1040" height="1" fill="rgba(255,255,255,0.06)"/>
+  <text x="80" y="540" font-family="Inter,system-ui,sans-serif" font-weight="600" font-size="16" fill="#D4843A">270K+ WORDS</text>
+  <text x="300" y="540" font-family="Inter,system-ui,sans-serif" font-weight="600" font-size="16" fill="#D4843A">14 APIS</text>
+  <text x="460" y="540" font-family="Inter,system-ui,sans-serif" font-weight="600" font-size="16" fill="#D4843A">24 CHAPTERS</text>
+  <text x="670" y="540" font-family="Inter,system-ui,sans-serif" font-weight="600" font-size="16" fill="#D4843A">50+ TEMPLATES</text>
+  <!-- URL -->
+  <text x="1120" y="580" font-family="Inter,system-ui,sans-serif" font-weight="500" font-size="16" fill="#5a5a66" text-anchor="end">erronatus.com</text>
+  <!-- Bottom accent line -->
+  <rect x="0" y="626" width="1200" height="4" fill="url(#accent)"/>
+</svg>

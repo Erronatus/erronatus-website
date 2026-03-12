@@ -9,18 +9,27 @@ interface Props {
 const { priceId, edition, label, variant = 'primary' } = Astro.props;
 ---
 
-<button
-  class={`checkout-btn w-full flex items-center justify-center gap-2 ${
-    variant === 'primary' ? 'btn-primary' : 'btn-secondary'
-  }`}
-  data-price-id={priceId}
-  data-edition={edition}
->
-  {label}
-  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-  </svg>
-</button>
+<div class="relative">
+  <button
+    class={`checkout-btn w-full flex items-center justify-center gap-2 ${
+      variant === 'primary' ? 'btn-primary' : 'btn-secondary'
+    }`}
+    data-price-id={priceId}
+    data-edition={edition}
+  >
+    <span class="btn-label">{label}</span>
+    <svg class="btn-arrow w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+    </svg>
+    <svg class="btn-spinner hidden w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
+    </svg>
+  </button>
+  <div class="checkout-error hidden mt-2 px-3 py-2 rounded-lg text-xs font-medium text-center"
+    style="background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2);">
+  </div>
+</div>
 
 <script is:inline>
   document.addEventListener('click', async (e) => {
@@ -29,16 +38,20 @@ const { priceId, edition, label, variant = 'primary' } = Astro.props;
 
     const priceId = btn.dataset.priceId;
     const edition = btn.dataset.edition;
-    const originalHTML = btn.innerHTML;
+    const label = btn.querySelector('.btn-label');
+    const arrow = btn.querySelector('.btn-arrow');
+    const spinner = btn.querySelector('.btn-spinner');
+    const errorEl = btn.closest('.relative')?.querySelector('.checkout-error');
 
-    btn.innerHTML = `
-      <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
-        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
-      </svg>
-      <span>Processing...</span>
-    `;
+    // Reset error
+    if (errorEl) { errorEl.classList.add('hidden'); errorEl.textContent = ''; }
+
+    // Loading state
+    label.textContent = 'Processing...';
+    arrow.classList.add('hidden');
+    spinner.classList.remove('hidden');
     btn.disabled = true;
+    btn.style.opacity = '0.7';
 
     try {
       const response = await fetch('/api/checkout', {
@@ -50,15 +63,28 @@ const { priceId, edition, label, variant = 'primary' } = Astro.props;
       const data = await response.json();
 
       if (data.url) {
+        label.textContent = 'Redirecting...';
         window.location.href = data.url;
       } else {
-        throw new Error(data.error || 'Checkout failed');
+        throw new Error(data.error || 'Something went wrong');
       }
     } catch (error) {
       console.error('Checkout error:', error);
-      alert('Something went wrong. Please try again.');
-      btn.innerHTML = originalHTML;
+      
+      // Show inline error
+      if (errorEl) {
+        errorEl.textContent = error.message || 'Checkout failed. Please try again.';
+        errorEl.classList.remove('hidden');
+        setTimeout(() => { errorEl.classList.add('hidden'); }, 5000);
+      }
+
+      // Reset button
+      label.textContent = btn.dataset.edition === 'enterprise' ? 'Get Enterprise' : 
+                          btn.dataset.edition === 'business' ? 'Get Business' : 'Get Personal';
+      arrow.classList.remove('hidden');
+      spinner.classList.add('hidden');
       btn.disabled = false;
+      btn.style.opacity = '1';
     }
   });
 </script>

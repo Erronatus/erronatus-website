@@ -1,96 +1,151 @@
 ---
 ---
 
-<section class="relative min-h-screen flex items-center overflow-hidden">
-  <!-- Layered Background -->
-  <div class="absolute inset-0">
-    <img src="/images/hero-bg.png" alt="" class="w-full h-full object-cover opacity-20" loading="eager" />
-  </div>
-  <div class="absolute inset-0 bg-gradient-to-b from-[var(--color-bg)]/40 via-[var(--color-bg)]/70 to-[var(--color-bg)]"></div>
-  <div class="hero-mesh"></div>
+<section class="relative min-h-screen flex flex-col justify-center overflow-hidden">
+  <!-- Animated Gradient Mesh Background -->
+  <canvas id="hero-gradient" class="absolute inset-0 w-full h-full" style="opacity: 0.35;"></canvas>
+  <div class="absolute inset-0 bg-gradient-to-b from-[var(--color-bg)]/30 via-transparent to-[var(--color-bg)]"></div>
   <div class="grid-overlay absolute inset-0"></div>
-
-  <!-- Ambient orb -->
-  <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] rounded-full opacity-15"
-    style="background: radial-gradient(circle, rgba(6, 182, 212, 0.12), transparent 60%); filter: blur(80px); animation: orb-float 16s ease-in-out infinite reverse;">
-  </div>
 
   <!-- Content -->
   <div class="relative z-10 mx-auto max-w-7xl section-padding w-full pt-32 pb-20">
-    <div class="grid lg:grid-cols-2 gap-16 lg:gap-12 items-center">
-      <!-- Left: Copy -->
-      <div>
-        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full mb-10"
-          style="background: rgba(139, 92, 246, 0.08); border: 1px solid rgba(139, 92, 246, 0.15); animation: fade-in 0.8s ease-out 0.2s both;">
-          <span class="w-1.5 h-1.5 rounded-full bg-accent-purple animate-pulse"></span>
-          <span class="text-[11px] font-semibold tracking-[0.2em] uppercase" style="color: var(--color-accent-purple);">
-            The AI Automation Framework
-          </span>
-        </div>
-
-        <h1 class="text-[3.2rem] sm:text-[4rem] md:text-[5rem] lg:text-[5.5rem] xl:text-[6.5rem] font-extrabold tracking-[-0.03em] leading-[0.92] mb-8"
-          style="animation: fade-in 1s ease-out 0.4s both;">
-          Your AI
-          <br />
-          Workforce
-          <br />
-          <span class="gradient-text">Starts Here</span>
-        </h1>
-
-        <p class="max-w-lg text-lg md:text-xl leading-relaxed mb-10"
-          style="color: var(--color-text-secondary); animation: fade-in 1s ease-out 0.7s both;">
-          The Erronatus Blueprint teaches you to build autonomous AI systems that
-          execute, analyze, and scale — while you focus on what matters.
-        </p>
-
-        <div class="flex flex-col sm:flex-row items-start gap-4"
-          style="animation: fade-in 1s ease-out 1s both;">
-          <a href="#blueprint" class="btn-primary gap-2">
-            <span>Get The Blueprint</span>
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </a>
-          <a href="/blog" class="btn-secondary gap-2">
-            <span>Read The Blog</span>
-          </a>
-        </div>
-
-        <div class="mt-14 flex items-center gap-5"
-          style="animation: fade-in 1s ease-out 1.3s both;">
-          <div class="flex -space-x-2.5">
-            {[1,2,3,4,5].map(i => (
-              <div class="w-9 h-9 rounded-full border-2 flex items-center justify-center text-[10px] font-bold"
-                style={`border-color: var(--color-bg); background: linear-gradient(135deg, hsl(${220 + i * 25}, 70%, 45%), hsl(${240 + i * 25}, 70%, 55%));`}>
-                {['J','A','M','S','K'][i-1]}
-              </div>
-            ))}
-          </div>
-          <p class="text-sm" style="color: var(--color-text-muted);">
-            Trusted by <span class="font-semibold" style="color: var(--color-text-secondary);">250+</span> automation builders
-          </p>
-        </div>
+    <!-- Top: Copy centered -->
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full mb-10"
+        style="background: rgba(212, 132, 58, 0.08); border: 1px solid rgba(212, 132, 58, 0.15); animation: fade-in 0.8s ease-out 0.2s both;">
+        <span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background: var(--color-accent-blue);"></span>
+        <span class="text-[11px] font-semibold tracking-[0.2em] uppercase" style="color: var(--color-accent-blue);">
+          The AI Automation Framework
+        </span>
       </div>
 
-      <!-- Right: Animated Terminal -->
-      <div class="lg:pl-6" style="animation: fade-in 1.2s ease-out 0.8s both;">
-        <div class="terminal-window shadow-2xl" style="box-shadow: 0 40px 100px rgba(0,0,0,0.5), 0 0 80px rgba(139, 92, 246, 0.06);">
-          <div class="terminal-titlebar">
+      <h1 class="text-[3.2rem] sm:text-[4rem] md:text-[5rem] lg:text-[5.5rem] xl:text-[6.5rem] font-extrabold tracking-[-0.03em] leading-[0.92] mb-8"
+        style="animation: fade-in 1s ease-out 0.4s both;">
+        Your AI Workforce
+        <br />
+        <span class="gradient-text">Starts Here</span>
+      </h1>
+
+      <p class="max-w-2xl mx-auto text-lg md:text-xl leading-relaxed mb-10"
+        style="color: var(--color-text-secondary); animation: fade-in 1s ease-out 0.7s both;">
+        The Erronatus Blueprint teaches you to build autonomous AI systems that
+        execute, analyze, and scale — while you focus on what matters.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6"
+        style="animation: fade-in 1s ease-out 1s both;">
+        <a href="#blueprint" class="btn-primary gap-2">
+          <span>Get The Blueprint</span>
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+        <a href="/blog" class="btn-secondary gap-2">
+          <span>Read The Blog</span>
+        </a>
+      </div>
+
+      <div class="flex items-center justify-center gap-6 flex-wrap"
+        style="animation: fade-in 1s ease-out 1.2s both;">
+        {[
+          { label: '270K+ words', desc: 'of documentation' },
+          { label: '14 APIs', desc: 'pre-integrated' },
+          { label: '50+ templates', desc: 'ready to deploy' },
+        ].map((item, i) => (
+          <div class="flex items-center gap-2">
+            {i > 0 && <div class="w-1 h-1 rounded-full hidden sm:block" style="background: var(--color-text-muted);"></div>}
+            <span class="text-sm font-semibold" style="color: var(--color-text-secondary);">{item.label}</span>
+            <span class="text-sm" style="color: var(--color-text-muted);">{item.desc}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Terminal: Full-width hero centerpiece -->
+    <div style="animation: fade-in 1.2s ease-out 1s both;">
+      <div id="terminal-3d" class="terminal-3d-wrapper mx-auto max-w-5xl" style="perspective: 1400px;">
+        <div id="terminal-inner" class="terminal-window will-change-transform"
+             style="box-shadow: 0 50px 120px rgba(0,0,0,0.6), 0 0 100px rgba(212, 132, 58, 0.04); transform-style: preserve-3d; border-radius: 16px;">
+          
+          <!-- Titlebar -->
+          <div class="terminal-titlebar" style="border-radius: 16px 16px 0 0;">
             <div class="terminal-dot" style="background: #ff5f57;"></div>
             <div class="terminal-dot" style="background: #febc2e;"></div>
             <div class="terminal-dot" style="background: #28c840;"></div>
-            <span class="ml-3 text-[11px]" style="color: var(--color-text-muted);">erronatus — workflow</span>
+            <span class="ml-3 text-[11px]" style="color: var(--color-text-muted);">erronatus — operations</span>
+            <div class="ml-auto flex items-center gap-4">
+              <!-- Workflow tabs -->
+              <div class="hidden sm:flex items-center gap-1">
+                {['Market', 'Leads', 'Scanner'].map((tab, i) => (
+                  <button class="wf-tab px-3 py-1 rounded text-[9px] font-semibold tracking-wider uppercase transition-all duration-300"
+                    style={`color: var(--color-text-muted); ${i === 0 ? 'background: rgba(255,255,255,0.06); color: var(--color-text-secondary);' : ''}`}
+                    data-wf={i}>
+                    {tab}
+                  </button>
+                ))}
+              </div>
+              <span id="terminal-status" class="flex items-center gap-1.5 text-[9px] font-semibold tracking-wider uppercase" style="color: #22c55e;">
+                <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                LIVE
+              </span>
+            </div>
           </div>
-          <div id="terminal-body" class="terminal-body text-[12px] md:text-[13px] min-h-[320px]">
-            <!-- Animated content injected by JS -->
+          
+          <!-- Terminal body with sidebar -->
+          <div class="flex" style="min-height: 340px;">
+            <!-- Sidebar: live metrics -->
+            <div id="terminal-sidebar" class="hidden md:flex flex-col gap-0 border-r" style="width: 56px; border-color: rgba(255,255,255,0.04); background: rgba(0,0,0,0.3);">
+              <div class="flex flex-col items-center py-3 border-b" style="border-color: rgba(255,255,255,0.04);" title="CPU">
+                <svg class="w-3.5 h-3.5 mb-1" style="color: var(--color-text-muted);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5M4.5 15.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25z"/></svg>
+                <span id="cpu-val" class="text-[8px] font-mono font-semibold" style="color: var(--color-accent-blue);">0%</span>
+              </div>
+              <div class="flex flex-col items-center py-3 border-b" style="border-color: rgba(255,255,255,0.04);" title="Memory">
+                <svg class="w-3.5 h-3.5 mb-1" style="color: var(--color-text-muted);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375"/></svg>
+                <span id="mem-val" class="text-[8px] font-mono font-semibold" style="color: var(--color-accent-purple);">0M</span>
+              </div>
+              <div class="flex flex-col items-center py-3 border-b" style="border-color: rgba(255,255,255,0.04);" title="Network">
+                <svg class="w-3.5 h-3.5 mb-1" style="color: var(--color-text-muted);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/></svg>
+                <span id="net-val" class="text-[8px] font-mono font-semibold" style="color: #22c55e;">0kb</span>
+              </div>
+              <div class="flex flex-col items-center py-3 border-b" style="border-color: rgba(255,255,255,0.04);" title="APIs">
+                <svg class="w-3.5 h-3.5 mb-1" style="color: var(--color-text-muted);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"/></svg>
+                <span id="api-val" class="text-[8px] font-mono font-semibold" style="color: #E8B44C;">0/14</span>
+              </div>
+              <!-- Mini activity bars -->
+              <div class="flex-1 flex flex-col justify-end items-center pb-2 px-1.5 gap-px" id="mini-bars">
+                {Array.from({length: 12}).map(() => (
+                  <div class="w-full h-1 rounded-sm" style="background: rgba(255,255,255,0.04);"></div>
+                ))}
+              </div>
+            </div>
+            
+            <!-- Main output -->
+            <div id="terminal-body" class="terminal-body text-[11px] md:text-[12px] flex-1 overflow-hidden relative" style="padding: 16px 24px;"></div>
+          </div>
+          
+          <!-- Status bar -->
+          <div id="terminal-footer" class="flex items-center justify-between px-5 py-2.5 text-[9px] font-mono"
+               style="background: rgba(255,255,255,0.02); border-top: 1px solid rgba(255,255,255,0.04); border-radius: 0 0 16px 16px;">
+            <div class="flex items-center gap-5">
+              <span style="color: var(--color-text-muted);">WORKFLOW <span id="wf-index" style="color: var(--color-accent-blue);">1</span>/3</span>
+              <span style="color: var(--color-text-muted);">COST: <span id="wf-cost" style="color: #22c55e;">$0.000</span></span>
+            </div>
+            <div class="flex items-center gap-5">
+              <span style="color: var(--color-text-muted);">LATENCY: <span id="wf-latency" style="color: var(--color-accent-purple);">0ms</span></span>
+              <span id="wf-timer" style="color: var(--color-text-muted);">00:00.0</span>
+            </div>
           </div>
         </div>
+        
+        <!-- Reflection glow -->
+        <div class="absolute -bottom-10 left-[15%] right-[15%] h-24 rounded-full opacity-15 blur-3xl pointer-events-none"
+             style="background: var(--gradient-primary);"></div>
       </div>
     </div>
   </div>
 
   <!-- Scroll indicator -->
-  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
     style="animation: scroll-hint 2.5s ease-in-out infinite;">
     <span class="text-[9px] uppercase tracking-[0.3em] font-medium" style="color: var(--color-text-muted);">Scroll</span>
     <svg class="w-4 h-4" style="color: var(--color-text-muted);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -101,145 +156,345 @@
 
 <style>
   @keyframes fade-in {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .terminal-3d-wrapper { position: relative; }
+  
+  .line-glow { position: relative; }
+  .line-glow::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    border-radius: 1px;
+    background: var(--color-accent-blue);
+    opacity: 0;
+    animation: glow-pulse 0.5s ease-out forwards;
+  }
+  
+  @keyframes glow-pulse {
+    0% { opacity: 0; }
+    50% { opacity: 1; box-shadow: 0 0 8px rgba(212, 132, 58, 0.5); }
+    100% { opacity: 0.4; box-shadow: 0 0 4px rgba(212, 132, 58, 0.2); }
+  }
+  
+  .progress-bar {
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.06);
+    overflow: hidden;
+    margin: 6px 0;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .wf-tab:hover {
+    background: rgba(255,255,255,0.04);
+    color: var(--color-text-secondary) !important;
   }
 </style>
 
 <script is:inline>
 (function() {
+  // ── 3D Mouse Tilt ──
+  const wrapper = document.getElementById('terminal-3d');
+  const inner = document.getElementById('terminal-inner');
+  
+  if (wrapper && inner) {
+    let tiltX = 0, tiltY = 0, targetTiltX = 0, targetTiltY = 0;
+    
+    wrapper.addEventListener('mousemove', (e) => {
+      const rect = wrapper.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      targetTiltX = (y - 0.5) * -6;
+      targetTiltY = (x - 0.5) * 6;
+    });
+    
+    wrapper.addEventListener('mouseleave', () => { targetTiltX = 0; targetTiltY = 0; });
+    
+    function animateTilt() {
+      tiltX += (targetTiltX - tiltX) * 0.06;
+      tiltY += (targetTiltY - tiltY) * 0.06;
+      inner.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+      requestAnimationFrame(animateTilt);
+    }
+    animateTilt();
+  }
+
+  // ── Sidebar Metrics ──
+  const cpuEl = document.getElementById('cpu-val');
+  const memEl = document.getElementById('mem-val');
+  const netEl = document.getElementById('net-val');
+  const apiEl = document.getElementById('api-val');
+  const miniBars = document.getElementById('mini-bars');
+  
+  let cpuTarget = 0, memTarget = 0, netTarget = 0, apiTarget = 0;
+  let cpu = 0, mem = 0, net = 0, api = 0;
+  
+  function updateMetrics() {
+    cpu += (cpuTarget - cpu) * 0.1;
+    mem += (memTarget - mem) * 0.1;
+    net += (netTarget - net) * 0.12;
+    api += (apiTarget - api) * 0.15;
+    if (cpuEl) cpuEl.textContent = Math.round(cpu) + '%';
+    if (memEl) memEl.textContent = Math.round(mem) + 'M';
+    if (netEl) netEl.textContent = Math.round(net) + 'kb';
+    if (apiEl) apiEl.textContent = Math.round(api) + '/14';
+    requestAnimationFrame(updateMetrics);
+  }
+  updateMetrics();
+  
+  function updateBars(intensity) {
+    if (!miniBars) return;
+    const bars = miniBars.children;
+    for (let i = 0; i < bars.length; i++) {
+      const h = Math.random() * intensity;
+      const hue = 25 + (h / intensity) * 15;
+      bars[i].style.background = h > 0.3 ? `hsla(${hue}, 55%, 50%, ${0.3 + h * 0.5})` : 'rgba(255,255,255,0.04)';
+    }
+  }
+
+  // ── Workflow Tabs ──
+  const wfTabs = document.querySelectorAll('.wf-tab');
+  function setActiveTab(idx) {
+    wfTabs.forEach((tab, i) => {
+      tab.style.background = i === idx ? 'rgba(255,255,255,0.06)' : '';
+      tab.style.color = i === idx ? 'var(--color-text-secondary)' : 'var(--color-text-muted)';
+    });
+  }
+
+  // ── Workflows ──
   const workflows = [
     {
-      title: 'Morning Briefing',
-      lines: [
-        { type: 'cmd', text: '$ openclaw cron run morning-briefing' },
-        { type: 'info', text: '⏳ Running workflow...' },
-        { type: 'step', text: '→ Fetching top headlines from NewsAPI...' },
-        { type: 'ok', text: '✓ 5 articles pulled' },
-        { type: 'step', text: '→ Checking AAPL, TSLA, NVDA prices...' },
-        { type: 'ok', text: '✓ AAPL $214.30 (+1.2%) · TSLA $188.40 (-0.8%)' },
-        { type: 'step', text: '→ Summarizing with DeepSeek V3...' },
-        { type: 'ok', text: '✓ Briefing generated · cost: $0.003' },
-        { type: 'step', text: '→ Delivering via Telegram...' },
-        { type: 'ok', text: '✓ Sent to @jacksontrades' },
-        { type: 'done', text: '⚡ Workflow complete in 4.2s' },
+      title: 'Morning Market Briefing',
+      steps: [
+        { type: 'cmd', text: '$ openclaw cron run morning-briefing', cpu: 15, mem: 120, net: 0, api: 0 },
+        { type: 'info', text: '⏳ Initializing workflow pipeline...' },
+        { type: 'header', text: '──── PHASE 1: DATA COLLECTION ────' },
+        { type: 'step', text: '→ NewsAPI: fetching top headlines...', cpu: 40, net: 24, api: 1 },
+        { type: 'progress', pct: 100, color: '#D4A853', label: 'newsapi' },
+        { type: 'ok', text: '✓ 12 articles pulled (3 relevant)', cost: 0.000 },
+        { type: 'step', text: '→ Alpaca: pulling market data [AAPL, TSLA, NVDA, MSFT]...', cpu: 35, net: 48, api: 3 },
+        { type: 'progress', pct: 100, color: '#C46A2F', label: 'alpaca' },
+        { type: 'data', text: '  AAPL $214.30 (+1.2%)  TSLA $188.40 (-0.8%)' },
+        { type: 'data', text: '  NVDA $892.10 (+3.4%)  MSFT $425.80 (+0.5%)' },
+        { type: 'ok', text: '✓ 4 symbols loaded · RSI calculated', cost: 0.001 },
+        { type: 'header', text: '──── PHASE 2: AI ANALYSIS ────' },
+        { type: 'step', text: '→ DeepSeek V3: generating market summary...', cpu: 78, mem: 340, api: 5 },
+        { type: 'progress', pct: 100, color: '#B07840', label: 'llm', duration: 1200 },
+        { type: 'ok', text: '✓ 280 tokens generated · $0.003 cost', cost: 0.003 },
+        { type: 'header', text: '──── PHASE 3: DELIVERY ────' },
+        { type: 'step', text: '→ Telegram: delivering briefing...', cpu: 20, net: 12, api: 6 },
+        { type: 'ok', text: '✓ Sent to @jacksontrades', cost: 0.000 },
+        { type: 'done', text: '⚡ Workflow complete', time: '4.2s', totalCost: '$0.004' },
       ]
     },
     {
-      title: 'Lead Generation',
-      lines: [
-        { type: 'cmd', text: '$ openclaw run lead-scraper --target "ai startups"' },
-        { type: 'info', text: '⏳ Initializing scraper...' },
-        { type: 'step', text: '→ Scanning 12 directories...' },
-        { type: 'ok', text: '✓ Found 847 companies' },
-        { type: 'step', text: '→ Filtering by criteria (Series A, 10-50 employees)...' },
-        { type: 'ok', text: '✓ 38 qualified leads' },
-        { type: 'step', text: '→ Enriching contacts via API...' },
-        { type: 'ok', text: '✓ 34 emails verified' },
-        { type: 'step', text: '→ Scoring & ranking leads...' },
-        { type: 'ok', text: '✓ Top 10 exported to Supabase' },
-        { type: 'step', text: '→ Drafting outreach sequence...' },
-        { type: 'ok', text: '✓ 3-email sequence queued via Resend' },
-        { type: 'done', text: '⚡ Pipeline complete · 34 leads ready' },
+      title: 'Lead Generation Pipeline',
+      steps: [
+        { type: 'cmd', text: '$ openclaw run lead-gen --target "ai startups"', cpu: 12, mem: 200, net: 0, api: 0 },
+        { type: 'info', text: '⏳ Spinning up scraper cluster...' },
+        { type: 'header', text: '──── PHASE 1: DISCOVERY ────' },
+        { type: 'step', text: '→ Scanning 12 startup directories...', cpu: 55, net: 120, api: 2 },
+        { type: 'progress', pct: 100, color: '#D4A853', label: 'scraper', duration: 1500 },
+        { type: 'ok', text: '✓ 847 companies found', cost: 0.000 },
+        { type: 'step', text: '→ Filtering: Series A, 10-50 employees, AI/ML...', cpu: 65, mem: 420, api: 3 },
+        { type: 'progress', pct: 100, color: '#C46A2F', label: 'filter' },
+        { type: 'ok', text: '✓ 38 qualified leads', cost: 0.000 },
+        { type: 'header', text: '──── PHASE 2: ENRICHMENT ────' },
+        { type: 'step', text: '→ Enriching contacts via API...', cpu: 45, net: 88, api: 6 },
+        { type: 'progress', pct: 100, color: '#B07840', label: 'enrich', duration: 1000 },
+        { type: 'data', text: '  34/38 emails verified · 28 LinkedIn matched' },
+        { type: 'ok', text: '✓ Enrichment complete · 34 valid contacts', cost: 0.012 },
+        { type: 'header', text: '──── PHASE 3: OUTREACH ────' },
+        { type: 'step', text: '→ Scoring & ranking leads...', cpu: 72, mem: 380, api: 8 },
+        { type: 'ok', text: '✓ Top 10 scored A+ · exported to Supabase', cost: 0.002 },
+        { type: 'step', text: '→ Drafting 3-email sequence via Resend...', cpu: 50, net: 24, api: 10 },
+        { type: 'ok', text: '✓ Sequence queued · first batch sends at 9 AM', cost: 0.001 },
+        { type: 'done', text: '⚡ Pipeline complete', time: '12.8s', totalCost: '$0.015' },
       ]
     },
     {
-      title: 'Market Monitor',
-      lines: [
-        { type: 'cmd', text: '$ openclaw cron run market-scan' },
-        { type: 'info', text: '⏳ Scanning watchlist...' },
-        { type: 'step', text: '→ Pulling RSI for 8 symbols...' },
-        { type: 'ok', text: '✓ All indicators loaded' },
-        { type: 'dim', text: '  AAPL  RSI 52.3  ——— neutral' },
-        { type: 'dim', text: '  TSLA  RSI 31.2  ——— approaching oversold' },
-        { type: 'warn', text: '  NVDA  RSI 28.4  ⚠️  OVERSOLD' },
-        { type: 'step', text: '→ Checking news sentiment for NVDA...' },
-        { type: 'ok', text: '✓ No negative catalysts found' },
-        { type: 'step', text: '→ Generating alert...' },
-        { type: 'ok', text: '✓ Alert sent: "NVDA RSI 28.4 — potential bounce"' },
-        { type: 'step', text: '→ Logging to trade journal...' },
-        { type: 'ok', text: '✓ Entry logged in Supabase' },
-        { type: 'done', text: '⚡ Scan complete · 1 alert fired · cost: $0.002' },
+      title: 'Market Anomaly Scanner',
+      steps: [
+        { type: 'cmd', text: '$ openclaw cron run market-scan --deep', cpu: 10, mem: 150, net: 0, api: 0 },
+        { type: 'info', text: '⏳ Loading watchlist + indicators...' },
+        { type: 'header', text: '──── PHASE 1: TECHNICAL SCAN ────' },
+        { type: 'step', text: '→ Pulling RSI, MACD, Bollinger for 8 symbols...', cpu: 48, net: 64, api: 3 },
+        { type: 'progress', pct: 100, color: '#D4A853', label: 'indicators' },
+        { type: 'ok', text: '✓ All indicators loaded', cost: 0.001 },
+        { type: 'data', text: '  AAPL  RSI 52.3 ▬▬▬▬▬░░░░░ neutral' },
+        { type: 'data', text: '  TSLA  RSI 31.2 ▬▬▬░░░░░░░ caution' },
+        { type: 'warn', text: '  NVDA  RSI 28.4 ▬▬░░░░░░░░ ⚠ OVERSOLD' },
+        { type: 'header', text: '──── PHASE 2: SENTIMENT CHECK ────' },
+        { type: 'step', text: '→ NewsAPI: scanning NVDA sentiment...', cpu: 38, net: 32, api: 5 },
+        { type: 'progress', pct: 100, color: '#22c55e', label: 'sentiment' },
+        { type: 'ok', text: '✓ Sentiment: NEUTRAL · No negative catalysts', cost: 0.001 },
+        { type: 'step', text: '→ Claude: analyzing setup quality...', cpu: 82, mem: 450, api: 7 },
+        { type: 'progress', pct: 100, color: '#B07840', label: 'analysis', duration: 1000 },
+        { type: 'ok', text: '✓ "High probability bounce. Watch $880 support."', cost: 0.004 },
+        { type: 'header', text: '──── PHASE 3: ALERT & LOG ────' },
+        { type: 'step', text: '→ Generating alert + logging to trade journal...', cpu: 25, net: 18, api: 9 },
+        { type: 'ok', text: '✓ Alert fired · Entry logged in Supabase', cost: 0.000 },
+        { type: 'done', text: '⚡ Scan complete', time: '6.7s', totalCost: '$0.006' },
       ]
     },
   ];
 
-  const colors = {
-    cmd: 'color: #06b6d4; font-weight: 600;',
+  const typeColors = {
+    cmd: 'color: #D4A853; font-weight: 600;',
     info: 'color: #94949e;',
+    header: 'color: #5a5a66; font-size: 10px; letter-spacing: 0.05em;',
     step: 'color: #94949e;',
     ok: 'color: #22c55e;',
-    warn: 'color: #f59e0b;',
-    dim: 'color: #5a5a66;',
-    done: 'color: #8b5cf6; font-weight: 600;',
+    warn: 'color: #E8B44C; font-weight: 500;',
+    data: 'color: #8B9DA0; padding-left: 4px;',
+    done: 'color: #D4843A; font-weight: 700; font-size: 13px;',
   };
 
   let currentWorkflow = 0;
+  let runningCost = 0;
+  let startTime = 0;
+  let timerInterval = null;
+  let isRunning = false;
 
-  function getTerminal() {
-    return document.getElementById('terminal-body');
+  function getTerminal() { return document.getElementById('terminal-body'); }
+  function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  function startTimer() {
+    startTime = Date.now();
+    const el = document.getElementById('wf-timer');
+    timerInterval = setInterval(() => {
+      const elapsed = (Date.now() - startTime) / 1000;
+      const mins = String(Math.floor(elapsed / 60)).padStart(2, '0');
+      const secs = String(Math.floor(elapsed % 60)).padStart(2, '0');
+      const ms = String(Math.floor((elapsed % 1) * 10));
+      if (el) el.textContent = mins + ':' + secs + '.' + ms;
+    }, 100);
   }
+  function stopTimer() { clearInterval(timerInterval); }
 
-  function sleep(ms) {
-    return new Promise(r => setTimeout(r, ms));
-  }
+  async function addLine(terminal, step) {
+    if (step.type === 'progress') {
+      const bar = document.createElement('div');
+      bar.className = 'progress-bar';
+      bar.innerHTML = '<div class="progress-bar-fill" style="background: ' + step.color + ';"></div>';
+      terminal.appendChild(bar);
+      terminal.scrollTop = terminal.scrollHeight;
+      await sleep(50);
+      const fill = bar.querySelector('.progress-bar-fill');
+      fill.style.transition = 'width ' + (step.duration || 600) + 'ms cubic-bezier(0.4, 0, 0.2, 1)';
+      fill.style.width = step.pct + '%';
+      await sleep(step.duration || 600);
+      bar.style.transition = 'opacity 0.3s';
+      bar.style.opacity = '0.3';
+      return;
+    }
 
-  async function typeLine(terminal, line) {
     const div = document.createElement('div');
-    div.style.cssText = colors[line.type] || '';
+    div.style.cssText = typeColors[step.type] || '';
     div.style.opacity = '0';
     div.style.transform = 'translateY(4px)';
-    div.style.transition = 'opacity 0.2s, transform 0.2s';
+    div.style.transition = 'opacity 0.25s, transform 0.25s';
+    div.style.lineHeight = '1.8';
+    if (step.type === 'ok' || step.type === 'done') div.className = 'line-glow';
     terminal.appendChild(div);
     terminal.scrollTop = terminal.scrollHeight;
 
-    // Type out command lines character by character
-    if (line.type === 'cmd') {
+    if (step.cpu !== undefined) cpuTarget = step.cpu;
+    if (step.mem !== undefined) memTarget = step.mem;
+    if (step.net !== undefined) netTarget = step.net;
+    if (step.api !== undefined) apiTarget = step.api;
+    updateBars(cpuTarget / 100);
+
+    if (step.cost !== undefined) {
+      runningCost += step.cost;
+      var costEl = document.getElementById('wf-cost');
+      if (costEl) costEl.textContent = '$' + runningCost.toFixed(3);
+    }
+    
+    var latEl = document.getElementById('wf-latency');
+    if (latEl && step.type === 'step') latEl.textContent = Math.floor(80 + Math.random() * 200) + 'ms';
+
+    if (step.type === 'cmd') {
       div.style.opacity = '1';
       div.style.transform = 'translateY(0)';
-      for (let i = 0; i < line.text.length; i++) {
-        div.textContent = line.text.substring(0, i + 1);
-        await sleep(18 + Math.random() * 12);
+      for (var i = 0; i < step.text.length; i++) {
+        div.textContent = step.text.substring(0, i + 1);
+        await sleep(14 + Math.random() * 10);
       }
+    } else if (step.type === 'done') {
+      div.textContent = step.text + ' · ' + step.time + ' · ' + step.totalCost;
+      requestAnimationFrame(function() { div.style.opacity = '1'; div.style.transform = 'translateY(0)'; });
     } else {
-      div.textContent = line.text;
-      // Pop in
-      requestAnimationFrame(() => {
-        div.style.opacity = '1';
-        div.style.transform = 'translateY(0)';
-      });
+      div.textContent = step.text;
+      requestAnimationFrame(function() { div.style.opacity = '1'; div.style.transform = 'translateY(0)'; });
     }
   }
 
-  async function runWorkflow() {
+  async function runWorkflow(index) {
+    if (typeof index === 'number') currentWorkflow = index;
+    isRunning = true;
     const terminal = getTerminal();
     if (!terminal) return;
 
-    const wf = workflows[currentWorkflow];
+    setActiveTab(currentWorkflow);
     terminal.innerHTML = '';
+    runningCost = 0;
+    cpuTarget = 0; memTarget = 0; netTarget = 0; apiTarget = 0;
+    
+    var idxEl = document.getElementById('wf-index');
+    if (idxEl) idxEl.textContent = String(currentWorkflow + 1);
+    var costEl = document.getElementById('wf-cost');
+    if (costEl) costEl.textContent = '$0.000';
+    
+    startTimer();
 
-    for (const line of wf.lines) {
-      await typeLine(terminal, line);
-      if (line.type === 'cmd') await sleep(600);
-      else if (line.type === 'done') await sleep(0);
-      else await sleep(250 + Math.random() * 150);
+    var wf = workflows[currentWorkflow];
+    for (var s = 0; s < wf.steps.length; s++) {
+      var step = wf.steps[s];
+      await addLine(terminal, step);
+      if (step.type === 'cmd') await sleep(500);
+      else if (step.type === 'done') { stopTimer(); }
+      else if (step.type === 'header') await sleep(200);
+      else if (step.type === 'progress') { /* waited already */ }
+      else await sleep(180 + Math.random() * 120);
     }
 
-    // Add blinking cursor
-    const cursor = document.createElement('div');
-    cursor.style.cssText = 'margin-top: 8px; color: #06b6d4;';
-    cursor.innerHTML = '$ <span style="display:inline-block;width:8px;height:16px;background:rgba(6,182,212,0.7);animation:blink 1s step-end infinite;vertical-align:middle;"></span>';
+    var cursor = document.createElement('div');
+    cursor.style.cssText = 'margin-top: 8px; color: #D4A853;';
+    cursor.innerHTML = '$ <span style="display:inline-block;width:8px;height:16px;background:rgba(212,168,83,0.7);animation:blink 1s step-end infinite;vertical-align:middle;"></span>';
     terminal.appendChild(cursor);
 
-    // Hold for 3 seconds then move to next
-    await sleep(3000);
+    cpuTarget = 2; memTarget = 60; netTarget = 0;
+
+    await sleep(4000);
+    isRunning = false;
     currentWorkflow = (currentWorkflow + 1) % workflows.length;
     runWorkflow();
   }
 
-  // Start after page load with a slight delay
+  // Tab click handlers
+  wfTabs.forEach(function(tab, i) {
+    tab.addEventListener('click', function() {
+      if (!isRunning) {
+        stopTimer();
+        runWorkflow(i);
+      }
+    });
+  });
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => setTimeout(runWorkflow, 1500));
+    document.addEventListener('DOMContentLoaded', function() { setTimeout(runWorkflow, 1500); });
   } else {
     setTimeout(runWorkflow, 1500);
   }
@@ -252,3 +507,56 @@
     50% { opacity: 0; }
   }
 </style>
+
+<script is:inline>
+// ── Animated Gradient Mesh ──
+(function() {
+  var canvas = document.getElementById('hero-gradient');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w, h, time = 0, animId;
+
+  function resize() {
+    var dpr = Math.min(window.devicePixelRatio, 1.5);
+    w = window.innerWidth;
+    h = window.innerHeight;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    ctx.scale(dpr, dpr);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  var blobs = [
+    { x: 0.7, y: 0.3, r: 0.45, color: [180, 100, 40], speedX: 0.015, speedY: 0.012, phase: 0 },
+    { x: 0.3, y: 0.6, r: 0.40, color: [140, 70, 30],  speedX: 0.012, speedY: 0.018, phase: 2 },
+    { x: 0.5, y: 0.2, r: 0.35, color: [90, 60, 120],   speedX: 0.018, speedY: 0.010, phase: 4 },
+    { x: 0.8, y: 0.7, r: 0.30, color: [100, 120, 140], speedX: 0.010, speedY: 0.016, phase: 1 },
+  ];
+
+  function draw() {
+    time += 0.004;
+    ctx.clearRect(0, 0, w, h);
+    blobs.forEach(function(blob) {
+      var cx = (blob.x + Math.sin(time * blob.speedX * 60 + blob.phase) * 0.12) * w;
+      var cy = (blob.y + Math.cos(time * blob.speedY * 60 + blob.phase) * 0.10) * h;
+      var radius = blob.r * Math.min(w, h);
+      var gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+      gradient.addColorStop(0, 'rgba(' + blob.color.join(',') + ', 0.45)');
+      gradient.addColorStop(0.4, 'rgba(' + blob.color.join(',') + ', 0.15)');
+      gradient.addColorStop(1, 'rgba(' + blob.color.join(',') + ', 0)');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, w, h);
+    });
+    animId = requestAnimationFrame(draw);
+  }
+
+  var obs = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting) draw();
+    else cancelAnimationFrame(animId);
+  });
+  obs.observe(canvas);
+})();
+</script>

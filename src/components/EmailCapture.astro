@@ -6,17 +6,16 @@
     <div class="reveal-scale">
       <div class="rounded-3xl p-10 md:p-16 text-center relative overflow-hidden"
         style="background: var(--color-surface); border: 1px solid var(--color-border);">
-        <div class="absolute inset-0 opacity-30">
+        <!-- Background glow -->
+        <div class="absolute inset-0 opacity-20 pointer-events-none">
           <div class="absolute top-0 right-0 w-80 h-80 rounded-full"
-            style="background: radial-gradient(circle, rgba(139, 92, 246, 0.3), transparent 70%); filter: blur(60px);">
-          </div>
+            style="background: radial-gradient(circle, rgba(212, 132, 58, 0.3), transparent 70%); filter: blur(60px);"></div>
           <div class="absolute bottom-0 left-0 w-60 h-60 rounded-full"
-            style="background: radial-gradient(circle, rgba(59, 130, 246, 0.2), transparent 70%); filter: blur(60px);">
-          </div>
+            style="background: radial-gradient(circle, rgba(176, 120, 64, 0.2), transparent 70%); filter: blur(60px);"></div>
         </div>
 
         <div class="relative z-10">
-          <span class="text-xs font-semibold tracking-[0.3em] uppercase" style="color: var(--color-accent-purple);">
+          <span class="text-xs font-semibold tracking-[0.3em] uppercase" style="color: var(--color-accent-blue);">
             Free Weekly Intel
           </span>
 
@@ -26,16 +25,16 @@
           </h2>
 
           <p class="max-w-lg mx-auto text-base mb-10" style="color: var(--color-text-secondary);">
-            Get early access and weekly automation intel — new tools, strategies that
+            Weekly automation intel — new tools, strategies that
             actually work, and systems that make money. No filler. No spam.
           </p>
 
-          <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="return false;">
+          <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <input
               type="email"
               placeholder="your@email.com"
-              class="flex-1 px-6 py-4 rounded-full text-sm outline-none transition-all duration-300 focus:ring-2 focus:ring-accent-purple/50"
-              style="background: var(--color-bg); border: 1px solid var(--color-border); color: var(--color-text);"
+              class="flex-1 px-6 py-4 rounded-full text-sm outline-none transition-all duration-300 focus:ring-2"
+              style="background: var(--color-bg); border: 1px solid var(--color-border); color: var(--color-text); --tw-ring-color: rgba(212, 132, 58, 0.3);"
               required
             />
             <button type="submit" class="btn-primary whitespace-nowrap">
@@ -43,8 +42,8 @@
             </button>
           </form>
 
-          <p class="mt-4 text-xs" style="color: var(--color-text-muted);">
-            Join hundreds of builders. Unsubscribe anytime.
+          <p class="mt-5 text-xs" style="color: var(--color-text-muted);">
+            Join the inner circle. Unsubscribe anytime.
           </p>
         </div>
       </div>

@@ -12,7 +12,7 @@ const navLinks = [
     <nav class="flex items-center justify-between h-20">
       <!-- Logo -->
       <a href="/" class="flex items-center gap-3 group">
-        <div class="w-9 h-9 rounded-lg flex items-center justify-center bg-gradient-to-br from-accent-blue to-accent-purple transition-transform duration-300 group-hover:scale-110">
+        <div class="w-9 h-9 rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style="background: var(--gradient-primary);">
           <span class="text-white font-extrabold text-lg">E</span>
         </div>
         <span class="text-lg font-bold tracking-tight" style="color: var(--color-text);">
@@ -90,26 +90,15 @@ const navLinks = [
   </div>
 </header>
 
-<!-- Floating Email Bar -->
-<div id="floating-bar" class="fixed bottom-0 left-0 right-0 z-40 translate-y-full transition-transform duration-500">
-  <div class="glass-card border-t" style="border-color: var(--color-border);">
-    <div class="mx-auto max-w-4xl section-padding py-3 flex flex-col sm:flex-row items-center gap-3">
-      <p class="text-sm font-medium flex-1" style="color: var(--color-text-secondary);">
-        Get the automation playbook. Join 1,000+ builders.
-      </p>
-      <form class="flex gap-2 w-full sm:w-auto" onsubmit="return false;">
-        <input
-          type="email"
-          placeholder="you@company.com"
-          class="flex-1 sm:w-64 px-4 py-2 rounded-full text-sm outline-none transition-all duration-300 focus:ring-2 focus:ring-accent-purple/50"
-          style="background: var(--color-surface-2); border: 1px solid var(--color-border); color: var(--color-text);"
-        />
-        <button type="submit" class="px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider text-white" style="background: var(--gradient-primary);">
-          Subscribe
-        </button>
-      </form>
-    </div>
-  </div>
+<!-- Floating CTA (appears after scrolling past hero) -->
+<div id="floating-bar" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 translate-y-[120%] transition-all duration-500 sm:hidden">
+  <a href="/#blueprint" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white shadow-2xl"
+    style="background: var(--gradient-primary); box-shadow: 0 12px 40px rgba(196, 106, 47, 0.35);">
+    Get The Blueprint
+    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+    </svg>
+  </a>
 </div>
 
 <style>
@@ -130,7 +119,7 @@ const navLinks = [
 
     // Header background
     if (scrollY > 50) {
-      header.style.background = 'rgba(10, 10, 10, 0.8)';
+      header.style.background = 'rgba(6, 6, 8, 0.85)';
       header.style.backdropFilter = 'blur(20px)';
       header.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
     } else {
@@ -139,11 +128,11 @@ const navLinks = [
       header.style.borderBottom = 'none';
     }
 
-    // Floating bar after scrolling past hero
+    // Floating CTA (mobile only) after scrolling past hero
     if (scrollY > window.innerHeight) {
-      floatingBar.style.transform = 'translateY(0)';
+      floatingBar.style.transform = 'translate(-50%, 0)';
     } else {
-      floatingBar.style.transform = 'translateY(100%)';
+      floatingBar.style.transform = 'translate(-50%, 120%)';
     }
 
     lastScroll = scrollY;
@@ -159,7 +148,12 @@ const navLinks = [
   });
 
   // Mobile menu
+  const mobileMenu = document.getElementById('mobile-menu');
   document.getElementById('mobile-toggle').addEventListener('click', () => {
-    document.getElementById('mobile-menu').classList.toggle('hidden');
+    mobileMenu.classList.toggle('hidden');
+  });
+  // Close on link click
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); });
   });
 </script>

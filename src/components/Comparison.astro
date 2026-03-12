@@ -1,45 +1,13 @@
 ---
 const rows = [
-  {
-    metric: 'Time to Working System',
-    blueprint: '1 weekend',
-    diy: '3-6 months',
-  },
-  {
-    metric: 'Total Cost',
-    blueprint: '$47-299 one-time',
-    diy: '$0 + hundreds of hours',
-  },
-  {
-    metric: 'APIs Pre-Integrated',
-    blueprint: '14 services, tested',
-    diy: 'Figure out each one separately',
-  },
-  {
-    metric: 'Gaps in Knowledge',
-    blueprint: 'Zero — complete system',
-    diy: 'Constant — tutorials skip the hard parts',
-  },
-  {
-    metric: 'Engine Cost Optimization',
-    blueprint: 'Pre-configured routing saves 60-80%',
-    diy: 'Most people overspend for months',
-  },
-  {
-    metric: 'Memory & Context',
-    blueprint: 'Architected from Day 1',
-    diy: 'Most never figure this out',
-  },
-  {
-    metric: 'Automation Templates',
-    blueprint: '50+ cron jobs ready to deploy',
-    diy: 'Build each from scratch',
-  },
-  {
-    metric: 'Success Rate',
-    blueprint: 'Follow the guide, get the result',
-    diy: 'Most quit before finishing setup',
-  },
+  { metric: 'Time to Working System',    blueprint: '1 weekend',                            diy: '3-6 months' },
+  { metric: 'Total Cost',                blueprint: '$47-299 one-time',                     diy: '$0 + hundreds of hours' },
+  { metric: 'APIs Pre-Integrated',       blueprint: '14 services, tested',                  diy: 'Figure out each one separately' },
+  { metric: 'Gaps in Knowledge',         blueprint: 'Zero — complete system',               diy: 'Constant — tutorials skip the hard parts' },
+  { metric: 'Engine Cost Optimization',  blueprint: 'Pre-configured routing saves 60-80%',  diy: 'Most people overspend for months' },
+  { metric: 'Memory & Context',          blueprint: 'Architected from Day 1',               diy: 'Most never figure this out' },
+  { metric: 'Automation Templates',      blueprint: '50+ cron jobs ready to deploy',        diy: 'Build each from scratch' },
+  { metric: 'Success Rate',             blueprint: 'Follow the guide, get the result',      diy: 'Most quit before finishing setup' },
 ];
 ---
 
@@ -71,13 +39,13 @@ const rows = [
 
         <!-- Rows -->
         {rows.map((row, i) => (
-          <div class="grid grid-cols-3 gap-4 p-5 md:p-6 items-center text-sm transition-colors duration-300 hover:bg-white/[0.01]"
+          <div class="comparison-row grid grid-cols-3 gap-4 p-5 md:p-6 items-center text-sm transition-all duration-300 hover:bg-white/[0.02]"
             style={i < rows.length - 1 ? `border-bottom: 1px solid var(--color-border);` : ''}>
             <div class="font-medium text-xs md:text-sm" style="color: var(--color-text-secondary);">
               {row.metric}
             </div>
             <div class="text-center">
-              <span class="inline-flex items-center gap-1.5 text-xs md:text-sm font-medium" style="color: var(--color-accent-cyan);">
+              <span class="inline-flex items-center gap-1.5 text-xs md:text-sm font-medium" style="color: var(--color-accent-blue);">
                 <svg class="w-3.5 h-3.5 flex-shrink-0 hidden md:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -102,3 +70,23 @@ const rows = [
     </div>
   </div>
 </section>
+
+<style>
+  .comparison-row {
+    position: relative;
+  }
+  .comparison-row::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .comparison-row:hover::before {
+    opacity: 1;
+  }
+</style>

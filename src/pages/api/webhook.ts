@@ -63,7 +63,7 @@ async function sendDeliveryEmail(
   <div style="max-width:560px;margin:0 auto;padding:40px 24px;">
     <!-- Header -->
     <div style="text-align:center;margin-bottom:40px;">
-      <div style="display:inline-block;width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);line-height:48px;text-align:center;">
+      <div style="display:inline-block;width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#C46A2F,#D4A853);line-height:48px;text-align:center;">
         <span style="color:#fff;font-weight:800;font-size:20px;">E</span>
       </div>
       <h1 style="color:#f0f0f5;font-size:24px;font-weight:800;margin:16px 0 4px;">Your Blueprint is Ready</h1>
@@ -81,7 +81,7 @@ async function sendDeliveryEmail(
 
       <!-- Download Button -->
       <div style="text-align:center;margin:32px 0;">
-        <a href="${downloadUrl}" style="display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff;font-size:14px;font-weight:700;text-decoration:none;border-radius:999px;letter-spacing:0.5px;">
+        <a href="${downloadUrl}" style="display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#C46A2F,#D4A853);color:#fff;font-size:14px;font-weight:700;text-decoration:none;border-radius:999px;letter-spacing:0.5px;">
           DOWNLOAD YOUR BLUEPRINT
         </a>
       </div>
@@ -96,8 +96,8 @@ async function sendDeliveryEmail(
       <h3 style="color:#f0f0f5;font-size:14px;font-weight:700;margin:0 0 12px;">What's Next?</h3>
       <ul style="color:#94949e;font-size:13px;line-height:1.8;margin:0;padding-left:20px;">
         <li>Open the PDF and follow Chapter 1 to set up your foundation</li>
-        <li>Join the <a href="https://discord.com/invite/clawd" style="color:#06b6d4;text-decoration:none;">OpenClaw community</a> for support</li>
-        <li>Check the <a href="https://erronatus.com/blog" style="color:#06b6d4;text-decoration:none;">blog</a> for tips and tutorials</li>
+        <li>Join the <a href="https://discord.com/invite/clawd" style="color:#D4843A;text-decoration:none;">OpenClaw community</a> for support</li>
+        <li>Check the <a href="https://erronatus.com/blog" style="color:#D4843A;text-decoration:none;">blog</a> for tips and tutorials</li>
       </ul>
     </div>
 
