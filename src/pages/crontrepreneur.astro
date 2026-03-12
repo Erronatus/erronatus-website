@@ -1,0 +1,214 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Crontrepreneur — Pre-Built AI Automation System"
+  description="Your AI workforce, pre-assembled. Install once, automate everything. Crontrepreneur is the turnkey automation terminal from Erronatus."
+>
+  <Header />
+
+  <main>
+    <!-- Hero -->
+    <section class="relative min-h-screen flex flex-col justify-center overflow-hidden">
+      <canvas id="cron-gradient" class="absolute inset-0 w-full h-full" style="opacity: 0.25;"></canvas>
+      <div class="absolute inset-0 grid-overlay"></div>
+
+      <div class="relative z-10 mx-auto max-w-5xl section-padding text-center pt-32 pb-20">
+        <div class="reveal">
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full mb-8"
+            style="background: rgba(212, 132, 58, 0.08); border: 1px solid rgba(212, 132, 58, 0.15);">
+            <span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background: var(--color-accent-blue);"></span>
+            <span class="text-[11px] font-semibold tracking-[0.2em] uppercase" style="color: var(--color-accent-blue);">
+              Coming Soon
+            </span>
+          </div>
+
+          <h1 class="text-[3rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] font-extrabold tracking-[-0.03em] leading-[0.92] mb-8">
+            <span class="gradient-text">Crontrepreneur</span>
+          </h1>
+
+          <p class="max-w-2xl mx-auto text-xl md:text-2xl leading-relaxed mb-4" style="color: var(--color-text-secondary);">
+            Your AI workforce, pre-assembled.
+          </p>
+
+          <p class="max-w-xl mx-auto text-base leading-relaxed mb-12" style="color: var(--color-text-muted);">
+            One install. Fourteen APIs. Fifty cron jobs. A fully autonomous terminal
+            that runs your business operations while you sleep.
+          </p>
+        </div>
+
+        <!-- Terminal Preview -->
+        <div class="reveal-scale mb-16">
+          <div class="terminal-window mx-auto max-w-3xl text-left"
+            style="box-shadow: 0 50px 120px rgba(0,0,0,0.5), 0 0 80px rgba(212, 132, 58, 0.04);">
+            <div class="terminal-titlebar">
+              <div class="terminal-dot" style="background: #ff5f57;"></div>
+              <div class="terminal-dot" style="background: #febc2e;"></div>
+              <div class="terminal-dot" style="background: #28c840;"></div>
+              <span class="ml-3 text-[11px]" style="color: var(--color-text-muted);">crontrepreneur — v1.0</span>
+              <span class="ml-auto text-[9px] font-semibold tracking-wider uppercase flex items-center gap-1.5" style="color: #22c55e;">
+                <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                READY
+              </span>
+            </div>
+            <div class="terminal-body text-[12px] md:text-[13px]" style="min-height: 280px; padding: 20px 24px;">
+              <div style="color: #D4A853; font-weight: 600;">$ crontrepreneur install</div>
+              <div style="color: #94949e; line-height: 1.8;">
+                <br/>
+                <span style="color: #5a5a66;">──── INSTALLING CRONTREPRENEUR v1.0 ────</span>
+                <br/><br/>
+                <span style="color: #22c55e;">✓</span> OpenClaw gateway configured<br/>
+                <span style="color: #22c55e;">✓</span> 14 API keys loaded from vault<br/>
+                <span style="color: #22c55e;">✓</span> Multi-engine routing active (5 models)<br/>
+                <span style="color: #22c55e;">✓</span> Memory system initialized<br/>
+                <span style="color: #22c55e;">✓</span> 50 cron jobs deployed<br/>
+                <span style="color: #22c55e;">✓</span> Telegram interface connected<br/>
+                <span style="color: #22c55e;">✓</span> Health monitors live<br/>
+                <br/>
+                <span style="color: #D4843A; font-weight: 700;">⚡ Crontrepreneur is operational.</span><br/>
+                <span style="color: #5a5a66;">   Your AI workforce is now running autonomously.</span>
+                <br/><br/>
+                <span style="color: #D4A853;">$</span> <span style="display:inline-block;width:8px;height:16px;background:rgba(212,168,83,0.7);animation:blink 1s step-end infinite;vertical-align:middle;"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- What's included -->
+        <div class="reveal">
+          <h2 class="text-2xl font-bold mb-10">Everything in the box</h2>
+
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left max-w-4xl mx-auto">
+            {[
+              { icon: '⚡', title: 'One-Command Install', desc: 'PowerShell or Bash. Pick your OS, run the script. Everything configures itself.' },
+              { icon: '🧠', title: '5 AI Engines Pre-Routed', desc: 'Claude, GPT, Gemini, DeepSeek, and local models — each assigned to what they do best.' },
+              { icon: '🔗', title: '14 APIs Wired Up', desc: 'Alpaca, Stripe, Supabase, Resend, GitHub, NewsAPI, Cloudflare, Vercel, and more.' },
+              { icon: '⏰', title: '50+ Cron Templates', desc: 'Market reports, health checks, lead gen, backups, email campaigns — all pre-built.' },
+              { icon: '📊', title: 'Trading Bot Scaffold', desc: 'Paper trading with Alpaca, RSI calculations, market anomaly detection.' },
+              { icon: '🔒', title: 'Credential Vault', desc: '.env template with every API key slot labeled. No guessing, no hunting.' },
+              { icon: '💬', title: 'Command Interface', desc: 'Talk to your AI via Telegram or Discord. It runs operations on command.' },
+              { icon: '📝', title: 'Persistent Memory', desc: 'Daily logs, long-term memory, skill files — your AI remembers everything.' },
+              { icon: '🚀', title: 'Deploy Anywhere', desc: 'Laptop, VPS, Raspberry Pi. Runs where Node.js runs. 24/7 guide included.' },
+            ].map((item, i) => (
+              <div class="glass-card glass-card-hover rounded-xl p-6" style={`transition-delay: ${i * 0.05}s;`}>
+                <div class="text-2xl mb-3">{item.icon}</div>
+                <h3 class="text-sm font-bold mb-2">{item.title}</h3>
+                <p class="text-xs leading-relaxed" style="color: var(--color-text-muted);">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Waitlist CTA -->
+        <div class="mt-20 reveal">
+          <div class="glass-card rounded-2xl p-10 md:p-14 max-w-2xl mx-auto relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10 pointer-events-none">
+              <div class="absolute top-0 right-0 w-60 h-60 rounded-full"
+                style="background: radial-gradient(circle, rgba(212, 132, 58, 0.4), transparent 70%); filter: blur(40px);"></div>
+            </div>
+
+            <div class="relative z-10">
+              <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
+                Get Early Access
+              </h2>
+              <p class="text-base mb-8" style="color: var(--color-text-secondary);">
+                Be the first to know when Crontrepreneur launches. 
+                Early adopters get priority pricing.
+              </p>
+
+              <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                <input
+                  type="email"
+                  placeholder="your@email.com"
+                  class="flex-1 px-6 py-4 rounded-full text-sm outline-none transition-all duration-300 focus:ring-2"
+                  style="background: var(--color-bg); border: 1px solid var(--color-border); color: var(--color-text); --tw-ring-color: rgba(212, 132, 58, 0.3);"
+                  required
+                />
+                <button type="submit" class="btn-primary whitespace-nowrap">
+                  Join Waitlist
+                </button>
+              </form>
+
+              <p class="mt-5 text-xs" style="color: var(--color-text-muted);">
+                No spam. Just the launch announcement.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Link back -->
+        <div class="mt-12 reveal">
+          <p class="text-sm" style="color: var(--color-text-muted);">
+            Want to build it yourself instead?
+            <a href="/#blueprint" class="link-hover font-medium" style="color: var(--color-accent-blue);">
+              Get The Blueprint →
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style is:global>
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+</style>
+
+<script is:inline>
+// Ambient canvas for Crontrepreneur page
+(function() {
+  var canvas = document.getElementById('cron-gradient');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w, h, time = 0;
+
+  function resize() {
+    var dpr = Math.min(window.devicePixelRatio, 1.5);
+    w = window.innerWidth;
+    h = window.innerHeight;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    ctx.scale(dpr, dpr);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  var blobs = [
+    { x: 0.6, y: 0.3, r: 0.4, color: [180, 100, 40], speed: 0.012, phase: 0 },
+    { x: 0.3, y: 0.7, r: 0.35, color: [140, 75, 30], speed: 0.015, phase: 2 },
+    { x: 0.8, y: 0.6, r: 0.3, color: [100, 120, 140], speed: 0.01, phase: 4 },
+  ];
+
+  function draw() {
+    time += 0.004;
+    ctx.clearRect(0, 0, w, h);
+    blobs.forEach(function(b) {
+      var cx = (b.x + Math.sin(time * b.speed * 60 + b.phase) * 0.1) * w;
+      var cy = (b.y + Math.cos(time * b.speed * 60 + b.phase) * 0.08) * h;
+      var r = b.r * Math.min(w, h);
+      var g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+      g.addColorStop(0, 'rgba(' + b.color.join(',') + ', 0.4)');
+      g.addColorStop(0.5, 'rgba(' + b.color.join(',') + ', 0.1)');
+      g.addColorStop(1, 'rgba(' + b.color.join(',') + ', 0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, w, h);
+    });
+    requestAnimationFrame(draw);
+  }
+
+  var obs = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting) draw();
+  });
+  obs.observe(canvas);
+})();
+</script>
