@@ -63,9 +63,9 @@
 
     <!-- Terminal: Full-width hero centerpiece -->
     <div style="animation: fade-in 1.2s ease-out 1s both;">
-      <div id="terminal-3d" class="terminal-3d-wrapper mx-auto max-w-5xl" style="perspective: 1400px;">
-        <div id="terminal-inner" class="terminal-window will-change-transform"
-             style="box-shadow: 0 50px 120px rgba(0,0,0,0.6), 0 0 100px rgba(212, 132, 58, 0.04); transform-style: preserve-3d; border-radius: 16px;">
+      <div id="terminal-3d" class="terminal-3d-wrapper mx-auto max-w-5xl">
+        <div id="terminal-inner" class="terminal-window terminal-glow"
+             style="box-shadow: 0 50px 120px rgba(0,0,0,0.6); border-radius: 16px;">
           
           <!-- Titlebar -->
           <div class="terminal-titlebar" style="border-radius: 16px 16px 0 0;">
@@ -161,6 +161,21 @@
   }
   
   .terminal-3d-wrapper { position: relative; }
+
+  .terminal-glow {
+    position: relative;
+    transition: box-shadow 0.5s ease, border-color 0.5s ease;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .terminal-glow:hover {
+    border-color: rgba(212, 132, 58, 0.4);
+    box-shadow: 
+      0 50px 120px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(212, 132, 58, 0.15),
+      0 0 30px rgba(212, 132, 58, 0.08),
+      0 0 60px rgba(212, 132, 58, 0.04);
+  }
   
   .line-glow { position: relative; }
   .line-glow::before {
@@ -204,31 +219,7 @@
 
 <script is:inline>
 (function() {
-  // ── 3D Mouse Tilt ──
-  const wrapper = document.getElementById('terminal-3d');
-  const inner = document.getElementById('terminal-inner');
-  
-  if (wrapper && inner) {
-    let tiltX = 0, tiltY = 0, targetTiltX = 0, targetTiltY = 0;
-    
-    wrapper.addEventListener('mousemove', (e) => {
-      const rect = wrapper.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width;
-      const y = (e.clientY - rect.top) / rect.height;
-      targetTiltX = (y - 0.5) * -6;
-      targetTiltY = (x - 0.5) * 6;
-    });
-    
-    wrapper.addEventListener('mouseleave', () => { targetTiltX = 0; targetTiltY = 0; });
-    
-    function animateTilt() {
-      tiltX += (targetTiltX - tiltX) * 0.06;
-      tiltY += (targetTiltY - tiltY) * 0.06;
-      inner.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-      requestAnimationFrame(animateTilt);
-    }
-    animateTilt();
-  }
+  // Terminal glow is CSS-only now — no JS needed for hover effect
 
   // ── Sidebar Metrics ──
   const cpuEl = document.getElementById('cpu-val');
