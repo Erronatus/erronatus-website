@@ -31,6 +31,8 @@ if (sessionId) {
       personal: 'erronatus-blueprint-personal.pdf',
       business: 'erronatus-blueprint-business.pdf',
       enterprise: 'erronatus-blueprint-enterprise.pdf',
+      'starter-kit': 'erronatus-setup-guide.pdf',
+      'setup-guide': 'erronatus-setup-guide.pdf',
     };
     const file = files[edition] || files.personal;
 
@@ -58,8 +60,12 @@ const editionLabels: Record<string, string> = {
   personal: 'Personal Edition',
   business: 'Business Edition',
   enterprise: 'Enterprise Edition',
+  'starter-kit': 'OpenClaw Setup Guide',
+  'setup-guide': 'OpenClaw Setup Guide',
 };
 const editionLabel = editionLabels[edition] || 'Personal Edition';
+const isGuide = edition === 'setup-guide' || edition === 'starter-kit';
+const productName = isGuide ? editionLabel : `The Erronatus Blueprint — ${editionLabel}`;
 ---
 
 <BaseLayout
@@ -86,7 +92,7 @@ const editionLabel = editionLabels[edition] || 'Personal Edition';
           </h1>
 
           <p class="text-lg mb-8" style="color: var(--color-text-secondary);">
-            Thank you for purchasing <strong style="color: var(--color-text);">The Erronatus Blueprint — {editionLabel}</strong>.
+            Thank you for purchasing <strong style="color: var(--color-text);">{productName}</strong>.
             {downloadUrl
               ? " Your guide is ready to download."
               : " A download link has been sent to your email."
@@ -101,8 +107,8 @@ const editionLabel = editionLabels[edition] || 'Personal Edition';
                 <span class="text-white font-extrabold text-xl">E</span>
               </div>
               <div>
-                <h3 class="text-lg font-bold">The Erronatus Blueprint</h3>
-                <p class="text-sm" style="color: var(--color-text-muted);">{editionLabel} — AI Automation with OpenClaw</p>
+                <h3 class="text-lg font-bold">{isGuide ? 'OpenClaw Setup Guide' : 'The Erronatus Blueprint'}</h3>
+                <p class="text-sm" style="color: var(--color-text-muted);">{isGuide ? 'Deploy Your AI Employee' : `${editionLabel} — AI Automation with OpenClaw`}</p>
               </div>
             </div>
 
@@ -154,26 +160,49 @@ const editionLabel = editionLabels[edition] || 'Personal Edition';
           <!-- Next Steps -->
           <div class="glass-card rounded-2xl p-8 text-left">
             <h3 class="text-lg font-bold mb-4">Next Steps</h3>
-            <div class="space-y-4">
-              <div>
-                <div class="text-sm font-semibold mb-1" style="color: var(--color-accent-cyan);">1. Read the Setup Guide</div>
-                <p class="text-sm" style="color: var(--color-text-secondary);">
-                  Start with Chapter 1 to install OpenClaw and configure your AI gateway.
-                </p>
+            {isGuide ? (
+              <div class="space-y-4">
+                <div>
+                  <div class="text-sm font-semibold mb-1" style="color: var(--color-accent-cyan);">1. Before You Start (Chapter 0)</div>
+                  <p class="text-sm" style="color: var(--color-text-secondary);">
+                    Prerequisites, terminal basics, and how config files work. Start here even if you have experience.
+                  </p>
+                </div>
+                <div>
+                  <div class="text-sm font-semibold mb-1" style="color: var(--color-accent-cyan);">2. Install & Connect (Chapters 1–4)</div>
+                  <p class="text-sm" style="color: var(--color-text-secondary);">
+                    Install OpenClaw, connect an AI model, set up your workspace files, and link Telegram or Discord.
+                  </p>
+                </div>
+                <div>
+                  <div class="text-sm font-semibold mb-1" style="color: var(--color-accent-cyan);">3. Automate (Chapters 5–7)</div>
+                  <p class="text-sm" style="color: var(--color-text-secondary);">
+                    Give your AI shell access, deploy sub-agents, and schedule your first cron jobs.
+                  </p>
+                </div>
               </div>
-              <div>
-                <div class="text-sm font-semibold mb-1" style="color: var(--color-accent-cyan);">2. Connect Your First API</div>
-                <p class="text-sm" style="color: var(--color-text-secondary);">
-                  Follow Chapter 5 to integrate your first external service and start pulling real data.
-                </p>
+            ) : (
+              <div class="space-y-4">
+                <div>
+                  <div class="text-sm font-semibold mb-1" style="color: var(--color-accent-cyan);">1. Read the Setup Guide</div>
+                  <p class="text-sm" style="color: var(--color-text-secondary);">
+                    Start with Chapter 1 to install OpenClaw and configure your AI gateway.
+                  </p>
+                </div>
+                <div>
+                  <div class="text-sm font-semibold mb-1" style="color: var(--color-accent-cyan);">2. Connect Your First API</div>
+                  <p class="text-sm" style="color: var(--color-text-secondary);">
+                    Follow Chapter 5 to integrate your first external service and start pulling real data.
+                  </p>
+                </div>
+                <div>
+                  <div class="text-sm font-semibold mb-1" style="color: var(--color-accent-cyan);">3. Build Your First Automation</div>
+                  <p class="text-sm" style="color: var(--color-text-secondary);">
+                    Chapter 7 walks you through scheduling your first cron job — your AI starts working for you.
+                  </p>
+                </div>
               </div>
-              <div>
-                <div class="text-sm font-semibold mb-1" style="color: var(--color-accent-cyan);">3. Build Your First Automation</div>
-                <p class="text-sm" style="color: var(--color-text-secondary);">
-                  Chapter 7 walks you through scheduling your first cron job — your AI starts working for you.
-                </p>
-              </div>
-            </div>
+            )}
           </div>
 
           <!-- Support -->
