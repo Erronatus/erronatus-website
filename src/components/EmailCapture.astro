@@ -29,22 +29,72 @@
             actually work, and systems that make money. No filler. No spam.
           </p>
 
-          <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          <form id="email-capture-form" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <input
               type="email"
+              name="email"
               placeholder="your@email.com"
               class="flex-1 px-6 py-4 rounded-full text-sm outline-none transition-all duration-300 focus:ring-2"
               style="background: var(--color-bg); border: 1px solid var(--color-border); color: var(--color-text); --tw-ring-color: rgba(212, 132, 58, 0.3);"
               required
             />
             <button type="submit" class="btn-primary whitespace-nowrap">
-              Subscribe
+              <span class="ec-label">Subscribe</span>
+              <svg class="ec-spinner hidden w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
+              </svg>
             </button>
           </form>
 
-          <p class="mt-5 text-xs" style="color: var(--color-text-muted);">
+          <p id="ec-status" class="mt-5 text-xs" style="color: var(--color-text-muted);">
             Join the inner circle. Unsubscribe anytime.
           </p>
+
+          <script is:inline>
+          document.addEventListener('DOMContentLoaded', function() {
+            var form = document.getElementById('email-capture-form');
+            if (!form) return;
+            form.addEventListener('submit', function(e) {
+              e.preventDefault();
+              var email = form.querySelector('input[name="email"]').value;
+              var btn = form.querySelector('button');
+              var label = btn.querySelector('.ec-label');
+              var spinner = btn.querySelector('.ec-spinner');
+              var status = document.getElementById('ec-status');
+
+              label.textContent = 'Subscribing...';
+              spinner.classList.remove('hidden');
+              btn.disabled = true;
+
+              fetch('/api/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email, list: 'newsletter' })
+              })
+              .then(function(res) { return res.json().then(function(d) { return { ok: res.ok, data: d }; }); })
+              .then(function(result) {
+                if (result.ok) {
+                  form.innerHTML = '<div class="text-center"><span class="text-2xl">✓</span><p class="text-sm mt-2" style="color: var(--color-accent-blue);">You\'re in. Check your inbox.</p></div>';
+                  status.textContent = '';
+                } else {
+                  label.textContent = 'Subscribe';
+                  spinner.classList.add('hidden');
+                  btn.disabled = false;
+                  status.textContent = result.data.error || 'Something went wrong.';
+                  status.style.color = '#ef4444';
+                }
+              })
+              .catch(function() {
+                label.textContent = 'Subscribe';
+                spinner.classList.add('hidden');
+                btn.disabled = false;
+                status.textContent = 'Network error. Please try again.';
+                status.style.color = '#ef4444';
+              });
+            });
+          });
+          </script>
         </div>
       </div>
     </div>

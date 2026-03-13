@@ -16,6 +16,10 @@ const EDITION_FILES: Record<string, { file: string; label: string }> = {
     file: 'erronatus-blueprint-enterprise.pdf',
     label: 'Enterprise Edition',
   },
+  'starter-kit': {
+    file: 'erronatus-starter-kit.zip',
+    label: 'AI Automation Starter Kit',
+  },
 };
 
 async function createSignedUrl(file: string): Promise<string | null> {

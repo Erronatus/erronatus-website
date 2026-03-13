@@ -168,10 +168,40 @@ document.addEventListener('DOMContentLoaded', function() {
     btn.disabled = true;
     btn.style.opacity = '0.7';
 
-    // Simulate send (no backend yet — but this gives professional UX)
-    setTimeout(function() {
-      form.innerHTML = '<div class="text-center py-12"><div class="text-4xl mb-4">✓</div><h3 class="text-xl font-bold mb-2">Message Sent</h3><p class="text-sm" style="color: var(--color-text-secondary);">We\'ll get back to you within 24 hours.</p></div>';
-    }, 1500);
+    var formData = new FormData(form);
+    var payload = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      subject: formData.get('subject'),
+      message: formData.get('message')
+    };
+
+    fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function(res) { return res.json().then(function(d) { return { ok: res.ok, data: d }; }); })
+    .then(function(result) {
+      if (result.ok) {
+        form.innerHTML = '<div class="text-center py-12"><div class="text-4xl mb-4">✓</div><h3 class="text-xl font-bold mb-2">Message Sent</h3><p class="text-sm" style="color: var(--color-text-secondary);">We\'ll get back to you within 24 hours.</p></div>';
+      } else {
+        label.textContent = 'Send Message';
+        arrow.classList.remove('hidden');
+        spinner.classList.add('hidden');
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        alert(result.data.error || 'Failed to send. Please email hello@erronatus.com directly.');
+      }
+    })
+    .catch(function() {
+      label.textContent = 'Send Message';
+      arrow.classList.remove('hidden');
+      spinner.classList.add('hidden');
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      alert('Network error. Please email hello@erronatus.com directly.');
+    });
   });
 });
 </script>
