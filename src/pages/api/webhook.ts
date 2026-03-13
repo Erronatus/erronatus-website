@@ -3,7 +3,7 @@ import type { APIRoute } from 'astro';
 export const prerender = false;
 
 // Map edition → PDF filename in Supabase
-const EDITION_FILES: Record<string, { file: string; label: string }> = {
+const EDITION_FILES: Record<string, { file: string; label: string; isGuide?: boolean }> = {
   personal: {
     file: 'erronatus-blueprint-personal.pdf',
     label: 'Personal Edition',
@@ -19,10 +19,12 @@ const EDITION_FILES: Record<string, { file: string; label: string }> = {
   'starter-kit': {
     file: 'erronatus-setup-guide.pdf',
     label: 'OpenClaw Setup Guide',
+    isGuide: true,
   },
   'setup-guide': {
     file: 'erronatus-setup-guide.pdf',
     label: 'OpenClaw Setup Guide',
+    isGuide: true,
   },
 };
 
@@ -59,6 +61,17 @@ async function sendDeliveryEmail(
   const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
   const editionInfo = EDITION_FILES[edition] || EDITION_FILES.personal;
   const name = customerName || 'there';
+  const isGuide = editionInfo.isGuide || false;
+  const productName = isGuide ? editionInfo.label : `The Erronatus Blueprint — ${editionInfo.label}`;
+  const headingText = isGuide ? 'Your Setup Guide is Ready' : 'Your Blueprint is Ready';
+  const buttonText = isGuide ? 'DOWNLOAD YOUR GUIDE' : 'DOWNLOAD YOUR BLUEPRINT';
+  const nextSteps = isGuide
+    ? `<li>Open the PDF and follow Chapter 0 — Before You Start</li>
+        <li>Work through each chapter in order — you'll be running by end of day</li>
+        <li>Join the <a href="https://discord.com/invite/clawd" style="color:#D4843A;text-decoration:none;">OpenClaw community</a> for support</li>`
+    : `<li>Open the PDF and follow Chapter 1 to set up your foundation</li>
+        <li>Join the <a href="https://discord.com/invite/clawd" style="color:#D4843A;text-decoration:none;">OpenClaw community</a> for support</li>
+        <li>Check the <a href="https://erronatus.com/blog" style="color:#D4843A;text-decoration:none;">blog</a> for tips and tutorials</li>`;
 
   const html = `
 <!DOCTYPE html>
@@ -74,7 +87,7 @@ async function sendDeliveryEmail(
       <div style="display:inline-block;width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#C46A2F,#D4A853);line-height:48px;text-align:center;">
         <span style="color:#fff;font-weight:800;font-size:20px;">E</span>
       </div>
-      <h1 style="color:#f0f0f5;font-size:24px;font-weight:800;margin:16px 0 4px;">Your Blueprint is Ready</h1>
+      <h1 style="color:#f0f0f5;font-size:24px;font-weight:800;margin:16px 0 4px;">${headingText}</h1>
       <p style="color:#7a7a8a;font-size:14px;margin:0;">Thank you for your purchase</p>
     </div>
 
@@ -84,13 +97,13 @@ async function sendDeliveryEmail(
         Hey ${name},
       </p>
       <p style="color:#94949e;font-size:14px;line-height:1.6;margin:0 0 24px;">
-        Your copy of <strong style="color:#e0e0e8;">The Erronatus Blueprint — ${editionInfo.label}</strong> is ready to download. Click the button below to get your PDF.
+        Your copy of <strong style="color:#e0e0e8;">${productName}</strong> is ready to download. Click the button below to get your PDF.
       </p>
 
       <!-- Download Button -->
       <div style="text-align:center;margin:32px 0;">
         <a href="${downloadUrl}" style="display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#C46A2F,#D4A853);color:#fff;font-size:14px;font-weight:700;text-decoration:none;border-radius:999px;letter-spacing:0.5px;">
-          DOWNLOAD YOUR BLUEPRINT
+          ${buttonText}
         </a>
       </div>
 
@@ -103,9 +116,7 @@ async function sendDeliveryEmail(
     <div style="background:#0d0d14;border:1px solid #1e1e26;border-radius:16px;padding:24px;margin-bottom:24px;">
       <h3 style="color:#f0f0f5;font-size:14px;font-weight:700;margin:0 0 12px;">What's Next?</h3>
       <ul style="color:#94949e;font-size:13px;line-height:1.8;margin:0;padding-left:20px;">
-        <li>Open the PDF and follow Chapter 1 to set up your foundation</li>
-        <li>Join the <a href="https://discord.com/invite/clawd" style="color:#D4843A;text-decoration:none;">OpenClaw community</a> for support</li>
-        <li>Check the <a href="https://erronatus.com/blog" style="color:#D4843A;text-decoration:none;">blog</a> for tips and tutorials</li>
+        ${nextSteps}
       </ul>
     </div>
 
@@ -135,7 +146,9 @@ async function sendDeliveryEmail(
     body: JSON.stringify({
       from: 'Erronatus <hello@erronatus.com>',
       to: email,
-      subject: `Your Erronatus Blueprint (${editionInfo.label}) — Download Inside`,
+      subject: isGuide
+        ? `Your ${editionInfo.label} — Download Inside`
+        : `Your Erronatus Blueprint (${editionInfo.label}) — Download Inside`,
       html,
     }),
   });
