@@ -5,8 +5,8 @@ import Footer from '../components/Footer.astro';
 ---
 
 <BaseLayout
-  title="AI Automation Starter Kit — $27 | Erronatus"
-  description="5 plug-and-play automation scripts + step-by-step guides. Start automating in 30 minutes. No coding experience required."
+  title="OpenClaw Setup Guide — $27 | Erronatus"
+  description="The complete copy-paste guide to deploying your AI employee. 10 chapters. Every config block ready to paste. Zero to working AI in one sitting."
 >
   <Header />
 
@@ -25,17 +25,17 @@ import Footer from '../components/Footer.astro';
           </div>
 
           <h1 class="text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] font-extrabold tracking-[-0.03em] leading-[0.92] mb-6">
-            AI Automation
-            <span class="gradient-text">Starter Kit</span>
+            Deploy Your
+            <span class="gradient-text">AI Employee</span>
           </h1>
 
           <p class="max-w-2xl mx-auto text-xl md:text-2xl leading-relaxed mb-4" style="color: var(--color-text-secondary);">
-            5 plug-and-play scripts. Zero fluff.
+            The complete OpenClaw setup guide. Copy-paste config. Working AI by end of day.
           </p>
 
           <p class="max-w-xl mx-auto text-base leading-relaxed mb-8" style="color: var(--color-text-muted);">
-            Stop reading about automation. Start running it.
-            Install in 30 minutes. No coding experience required.
+            10 chapters. Every command is real. Every config block is ready to paste.
+            No prior AI experience required.
           </p>
 
           <div class="flex items-center justify-center gap-4 mb-12">
@@ -44,48 +44,75 @@ import Footer from '../components/Footer.astro';
           </div>
 
           <button
-            id="starter-kit-buy"
+            id="setup-guide-buy"
             class="btn-primary text-base px-10 py-4"
           >
-            Get the Starter Kit →
+            Get the Setup Guide →
           </button>
         </div>
 
         <!-- What's Inside -->
         <div class="mb-20 reveal">
-          <h2 class="text-2xl font-bold text-center mb-12">What's Inside</h2>
+          <h2 class="text-2xl font-bold text-center mb-4">What's Inside</h2>
+          <p class="text-center text-sm mb-12" style="color: var(--color-text-muted);">
+            10 chapters. ~40 pages. Every block is copy-paste ready.
+          </p>
 
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
+                num: '00',
+                title: 'Before You Start',
+                desc: 'Prerequisites, how to open a terminal, how to edit config files. The foundation chapter that makes everything else click — even if you\'ve never touched a command line.',
+                tag: 'Foundation'
+              },
+              {
                 num: '01',
-                title: 'Daily News Aggregator',
-                desc: 'Scrapes top AI/tech news from 5 sources, filters signal from noise, delivers a clean daily digest to your inbox. Set it and forget it.',
-                tag: 'Cron Job'
+                title: 'Installation',
+                desc: 'One-command install for Windows, Mac, and Linux. Verify everything works. Start the gateway. Three commands and you\'re running.',
+                tag: 'Setup'
               },
               {
                 num: '02',
-                title: 'Social Media Auto-Poster',
-                desc: 'Generates and schedules content across X/Twitter with built-in voice calibration. Posts when your audience is active. Quality gates prevent spam.',
-                tag: 'Automation'
+                title: 'Model Setup',
+                desc: 'Connect to Anthropic, OpenAI, OpenRouter, or run free local models with Ollama. Three config templates: budget, power, and premium.',
+                tag: 'AI Models'
               },
               {
                 num: '03',
-                title: 'API Health Monitor',
-                desc: 'Checks your APIs, websites, and services every hour. Sends instant alerts when something breaks. Tracks uptime history automatically.',
-                tag: 'Monitoring'
+                title: 'The Workspace',
+                desc: 'Copy-paste templates for SOUL.md, USER.md, AGENTS.md, MEMORY.md, TOOLS.md, and HEARTBEAT.md. Your AI gets identity, memory, and monitoring in one chapter.',
+                tag: 'Identity'
               },
               {
                 num: '04',
-                title: 'Lead Capture Pipeline',
-                desc: 'Email collection form with auto-tagging, welcome sequences, and simple CRM tracking. Connects to any email provider via API.',
-                tag: 'Sales'
+                title: 'Channel Setup',
+                desc: 'Connect Telegram or Discord. Lock it to your account only — nobody else can message your bot. Step-by-step with security verification.',
+                tag: 'Messaging'
               },
               {
                 num: '05',
-                title: 'Competitor Price Tracker',
-                desc: 'Monitors competitor pricing pages daily. Alerts you to changes. Logs historical data for trend analysis. Know before your customers do.',
-                tag: 'Intelligence'
+                title: 'Exec & Permissions',
+                desc: 'Give your AI hands. Shell access, file management, deployments. Full operator mode with safety rails and elevated permissions locked to your ID.',
+                tag: 'Permissions'
+              },
+              {
+                num: '06',
+                title: 'Sub-Agents',
+                desc: 'Background workers your AI dispatches for parallel tasks. Research, builds, and analysis running simultaneously while you keep chatting.',
+                tag: 'Workers'
+              },
+              {
+                num: '07',
+                title: 'Cron Jobs',
+                desc: '5 ready-to-paste scheduled jobs: health checks, revenue reports, content calendars, competitor monitoring, and memory maintenance.',
+                tag: 'Automation'
+              },
+              {
+                num: '08',
+                title: 'Troubleshooting',
+                desc: 'The 5-level fix ladder: from restart to nuclear reinstall. Every common error with the exact fix. Platform-specific service removal.',
+                tag: 'Repair'
               },
             ].map((item) => (
               <div class="glass-card glass-card-hover rounded-xl p-6">
@@ -104,7 +131,7 @@ import Footer from '../components/Footer.astro';
               </div>
             ))}
 
-            <!-- Bonus card -->
+            <!-- Complete Config card -->
             <div class="glass-card rounded-xl p-6 relative overflow-hidden"
               style="background: rgba(212, 132, 58, 0.04); border: 1px solid rgba(212, 132, 58, 0.15);">
               <div class="absolute top-3 right-3">
@@ -113,12 +140,44 @@ import Footer from '../components/Footer.astro';
                   BONUS
                 </span>
               </div>
-              <div class="text-2xl mb-3">📋</div>
-              <h3 class="text-base font-bold mb-2">Quick-Start Guide</h3>
+              <div class="flex items-center gap-3 mb-4">
+                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded"
+                  style="background: rgba(212, 132, 58, 0.1); color: var(--color-accent-blue);">
+                  09
+                </span>
+                <span class="text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full"
+                  style="background: rgba(123, 143, 168, 0.1); color: var(--color-accent-cyan);">
+                  Config
+                </span>
+              </div>
+              <h3 class="text-base font-bold mb-2">Complete Config Reference</h3>
               <p class="text-sm leading-relaxed" style="color: var(--color-text-muted);">
-                Step-by-step setup instructions for Windows, Mac, and Linux.
-                Copy-paste commands. Screenshots. No guessing.
+                Every section assembled into one paste-ready config file. Replace 3 values and you have a working AI employee. 30 lines. Done.
               </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- What You'll Have -->
+        <div class="mb-20 reveal">
+          <div class="glass-card rounded-2xl p-10 md:p-14">
+            <h2 class="text-2xl font-bold mb-8 text-center">By End of Day, You'll Have</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+              {[
+                'AI running on your machine — not someone else\'s server',
+                'Connected to Telegram or Discord — locked to your account',
+                'Identity files that shape how your AI thinks and decides',
+                'Memory system that persists between conversations',
+                'Full shell access — deploy code, manage files, run scripts',
+                'Sub-agents for parallel background work',
+                'Scheduled automation — monitoring, reports, reminders',
+                'A troubleshooting playbook for when things break',
+              ].map((item) => (
+                <div class="flex items-start gap-3">
+                  <span class="mt-0.5 flex-shrink-0" style="color: #22c55e;">✓</span>
+                  <span class="text-sm" style="color: var(--color-text-secondary);">{item}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -131,19 +190,19 @@ import Footer from '../components/Footer.astro';
               <div>
                 <h3 class="text-sm font-bold mb-4" style="color: #22c55e;">✅ Perfect for you if:</h3>
                 <ul class="space-y-3 text-sm" style="color: var(--color-text-secondary);">
-                  <li class="flex items-start gap-2"><span style="color: #22c55e;">•</span> You want to automate repetitive tasks but don't know where to start</li>
-                  <li class="flex items-start gap-2"><span style="color: #22c55e;">•</span> You've heard about AI automation but haven't built anything yet</li>
-                  <li class="flex items-start gap-2"><span style="color: #22c55e;">•</span> You want practical scripts, not theory</li>
-                  <li class="flex items-start gap-2"><span style="color: #22c55e;">•</span> You run a business and waste hours on manual processes</li>
-                  <li class="flex items-start gap-2"><span style="color: #22c55e;">•</span> You can follow step-by-step instructions</li>
+                  <li class="flex items-start gap-2"><span style="color: #22c55e;">•</span> You want an AI that works for you 24/7 — not just when you open a chat window</li>
+                  <li class="flex items-start gap-2"><span style="color: #22c55e;">•</span> You've never set up a server, terminal, or AI system before</li>
+                  <li class="flex items-start gap-2"><span style="color: #22c55e;">•</span> You want copy-paste config, not theory</li>
+                  <li class="flex items-start gap-2"><span style="color: #22c55e;">•</span> You're tired of AI chatbots that forget everything and can't do anything</li>
+                  <li class="flex items-start gap-2"><span style="color: #22c55e;">•</span> You can follow step-by-step instructions for 45-90 minutes</li>
                 </ul>
               </div>
               <div>
                 <h3 class="text-sm font-bold mb-4" style="color: #ef4444;">❌ Not for you if:</h3>
                 <ul class="space-y-3 text-sm" style="color: var(--color-text-secondary);">
-                  <li class="flex items-start gap-2"><span style="color: #ef4444;">•</span> You're already running 50+ automated workflows</li>
-                  <li class="flex items-start gap-2"><span style="color: #ef4444;">•</span> You want a comprehensive business automation system (get the <a href="/#blueprint" class="link-hover" style="color: var(--color-accent-blue);">Blueprint</a> instead)</li>
-                  <li class="flex items-start gap-2"><span style="color: #ef4444;">•</span> You expect magic without doing the setup</li>
+                  <li class="flex items-start gap-2"><span style="color: #ef4444;">•</span> You already have OpenClaw running and configured</li>
+                  <li class="flex items-start gap-2"><span style="color: #ef4444;">•</span> You want business automation blueprints (get the <a href="/#blueprint" class="link-hover" style="color: var(--color-accent-blue);">Blueprint</a> instead)</li>
+                  <li class="flex items-start gap-2"><span style="color: #ef4444;">•</span> You expect results without doing the setup</li>
                 </ul>
               </div>
             </div>
@@ -152,27 +211,33 @@ import Footer from '../components/Footer.astro';
 
         <!-- Comparison to Blueprint -->
         <div class="mb-20 reveal">
-          <h2 class="text-2xl font-bold text-center mb-8">Starter Kit vs Blueprint</h2>
+          <h2 class="text-2xl font-bold text-center mb-8">Setup Guide vs Blueprint</h2>
           <div class="glass-card rounded-xl overflow-hidden">
             <table class="w-full text-sm">
               <thead>
                 <tr style="background: rgba(212, 132, 58, 0.05);">
                   <th class="text-left p-4 font-semibold" style="color: var(--color-text-muted);">Feature</th>
-                  <th class="text-center p-4 font-bold" style="color: var(--color-accent-blue);">Starter Kit — $27</th>
+                  <th class="text-center p-4 font-bold" style="color: var(--color-accent-blue);">Setup Guide — $27</th>
                   <th class="text-center p-4 font-bold" style="color: var(--color-gold);">Blueprint — from $47</th>
                 </tr>
               </thead>
               <tbody style="color: var(--color-text-secondary);">
-                <tr style="border-top: 1px solid var(--color-border);"><td class="p-4">Ready-to-run scripts</td><td class="text-center p-4">5 scripts</td><td class="text-center p-4">50+ templates</td></tr>
-                <tr style="border-top: 1px solid var(--color-border);"><td class="p-4">Step-by-step guide</td><td class="text-center p-4">Quick-start (20 pages)</td><td class="text-center p-4">Full manual (236–820 pages)</td></tr>
-                <tr style="border-top: 1px solid var(--color-border);"><td class="p-4">API integrations</td><td class="text-center p-4">3 APIs</td><td class="text-center p-4">14+ APIs</td></tr>
-                <tr style="border-top: 1px solid var(--color-border);"><td class="p-4">AI model routing</td><td class="text-center p-4">—</td><td class="text-center p-4">5 engines, cost-optimized</td></tr>
-                <tr style="border-top: 1px solid var(--color-border);"><td class="p-4">Trading bot scaffold</td><td class="text-center p-4">—</td><td class="text-center p-4">✓</td></tr>
-                <tr style="border-top: 1px solid var(--color-border);"><td class="p-4">Business automation</td><td class="text-center p-4">Basic</td><td class="text-center p-4">Enterprise-grade</td></tr>
-                <tr style="border-top: 1px solid var(--color-border);"><td class="p-4">Setup time</td><td class="text-center p-4">30 minutes</td><td class="text-center p-4">2–4 hours</td></tr>
+                <tr style="border-top: 1px solid var(--color-border);"><td class="p-4">Purpose</td><td class="text-center p-4">Get OpenClaw running</td><td class="text-center p-4">Build automated businesses</td></tr>
+                <tr style="border-top: 1px solid var(--color-border);"><td class="p-4">Pages</td><td class="text-center p-4">~40 pages</td><td class="text-center p-4">236–820 pages</td></tr>
+                <tr style="border-top: 1px solid var(--color-border);"><td class="p-4">Experience needed</td><td class="text-center p-4">None</td><td class="text-center p-4">OpenClaw installed</td></tr>
+                <tr style="border-top: 1px solid var(--color-border);"><td class="p-4">Copy-paste config</td><td class="text-center p-4">✓ Every block</td><td class="text-center p-4">✓ Templates included</td></tr>
+                <tr style="border-top: 1px solid var(--color-border);"><td class="p-4">AI model setup</td><td class="text-center p-4">✓ Cloud + local</td><td class="text-center p-4">✓ Advanced routing</td></tr>
+                <tr style="border-top: 1px solid var(--color-border);"><td class="p-4">Channel security</td><td class="text-center p-4">✓ Locked to your ID</td><td class="text-center p-4">✓ Multi-channel</td></tr>
+                <tr style="border-top: 1px solid var(--color-border);"><td class="p-4">Automation depth</td><td class="text-center p-4">5 starter cron jobs</td><td class="text-center p-4">50+ workflows</td></tr>
+                <tr style="border-top: 1px solid var(--color-border);"><td class="p-4">Revenue systems</td><td class="text-center p-4">—</td><td class="text-center p-4">Full stack</td></tr>
+                <tr style="border-top: 1px solid var(--color-border);"><td class="p-4">API integrations</td><td class="text-center p-4">4 (AI + search)</td><td class="text-center p-4">14+ services</td></tr>
+                <tr style="border-top: 1px solid var(--color-border);"><td class="p-4">Setup time</td><td class="text-center p-4">45-90 minutes</td><td class="text-center p-4">2–4 hours</td></tr>
               </tbody>
             </table>
           </div>
+          <p class="text-center text-xs mt-4" style="color: var(--color-text-muted);">
+            Start with the Setup Guide. Upgrade to the Blueprint when you're ready to build.
+          </p>
         </div>
 
         <!-- CTA -->
@@ -184,18 +249,18 @@ import Footer from '../components/Footer.astro';
             </div>
             <div class="relative z-10">
               <h2 class="text-3xl font-extrabold tracking-tight mb-4">
-                Start Automating
-                <span class="gradient-text">Today</span>
+                Your AI Employee
+                <span class="gradient-text">Starts Here</span>
               </h2>
               <p class="text-base mb-2" style="color: var(--color-text-secondary);">
-                5 scripts. 30 minutes to set up. Lifetime access.
+                10 chapters. Copy-paste config. Working AI by end of day.
               </p>
               <p class="text-4xl font-extrabold mb-6" style="color: var(--color-text);">$27</p>
-              <button id="starter-kit-buy-bottom" class="btn-primary text-base px-10 py-4">
-                Get the Starter Kit →
+              <button id="setup-guide-buy-bottom" class="btn-primary text-base px-10 py-4">
+                Get the Setup Guide →
               </button>
               <p class="mt-6 text-xs" style="color: var(--color-text-muted);">
-                🛡️ 30-day money-back guarantee. Instant delivery via email.
+                🛡️ 30-day money-back guarantee. Instant PDF delivery via email.
               </p>
             </div>
           </div>
@@ -210,7 +275,7 @@ import Footer from '../components/Footer.astro';
 
 <script is:inline>
 document.addEventListener('DOMContentLoaded', function() {
-  var buttons = document.querySelectorAll('#starter-kit-buy, #starter-kit-buy-bottom');
+  var buttons = document.querySelectorAll('#setup-guide-buy, #setup-guide-buy-bottom');
   buttons.forEach(function(btn) {
     btn.addEventListener('click', function() {
       btn.textContent = 'Processing...';
@@ -222,7 +287,7 @@ document.addEventListener('DOMContentLoaded', function() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           priceId: 'price_1TAZh2Q9JjxqCgrLxfDTqP8L',
-          edition: 'starter-kit'
+          edition: 'setup-guide'
         })
       })
       .then(function(res) { return res.json(); })
@@ -230,14 +295,14 @@ document.addEventListener('DOMContentLoaded', function() {
         if (data.url) {
           window.location.href = data.url;
         } else {
-          btn.textContent = 'Get the Starter Kit →';
+          btn.textContent = 'Get the Setup Guide →';
           btn.disabled = false;
           btn.style.opacity = '1';
           alert('Something went wrong. Please try again.');
         }
       })
       .catch(function() {
-        btn.textContent = 'Get the Starter Kit →';
+        btn.textContent = 'Get the Setup Guide →';
         btn.disabled = false;
         btn.style.opacity = '1';
         alert('Network error. Please try again.');

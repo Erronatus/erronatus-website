@@ -17,8 +17,12 @@ const EDITION_FILES: Record<string, { file: string; label: string }> = {
     label: 'Enterprise Edition',
   },
   'starter-kit': {
-    file: 'erronatus-starter-kit.zip',
-    label: 'AI Automation Starter Kit',
+    file: 'erronatus-setup-guide.pdf',
+    label: 'OpenClaw Setup Guide',
+  },
+  'setup-guide': {
+    file: 'erronatus-setup-guide.pdf',
+    label: 'OpenClaw Setup Guide',
   },
 };
 
